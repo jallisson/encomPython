@@ -1,0 +1,86 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap-4.2.1.css" rel="stylesheet" type="text/css">
+<table width="1200%" border="1" align="center" cellpadding="0" cellspacing="0" style="margin-left: auto; margin-right: auto; width: 1017px; height: 479px;">
+{% block body %}  
+<tbody>
+<tr style="height: 21px;">
+<td width="300" rowspan="2" style="height: 50px; width: 100px; text-align: center;">
+<img src="/static/img/logoacaiex.jpeg" width="150" height="50">
+<p>VIA&Ccedil;&Atilde;O A&Ccedil;AILANDIA LTDA<br />
+  Cnpj: 04.358.816/0001-42 Insc.Est: 12.308.151</p>
+</td>
+<td width="100" colspan="2" style="height: 21px; width: 100px; text-align: center;">
+  <p>ORIGEM:</p>
+  <p>campo_origem&nbsp;</p>
+</td>
+<td width="264" style="height: 21px; width: 195px; text-align: center;">
+  <p>CARRO:</p>
+  <p>campo_carro</p>
+</td>
+<td width="262" colspan="2" style="height: 21px; width: 195px; text-align: center;">Nº CONTROLE: campo_id SÉRIE ÚNICA</td>
+</tr>
+<tr style="height: 62px;">
+<td height="100" colspan="2" style="height: 21px; width: 100px; text-align: center; ">
+<p style="text-align: center;">DESTINO:</p>
+<p>campo_destino</p>
+</td>
+<td style="height: 62px; width: 195px; text-align: center;">
+  <p>MOTORISTA P/R:</p>
+  <p>campo_motorista</p>
+  <hr />campo_mot_rese<br /><br /></td>
+<td colspan="2" style="height: 62px; width: 195px; text-align: center;"><p>campo_usuario - campo_agência</p><hr/><p>EMISSOR - AGÊNCIA</p>
+  <p>DATA: campo_data</p></td>
+</tr>
+<tr style="height: 11px;">
+<td style="height: 11px; width: 478px; text-align: center;" colspan="3">
+<p style="text-align: left;">REMETENTE: campo_cliente_origem</p>
+<p style="text-align: left;">TEL.:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; campo_telefone_origem</p>
+</td>
+<td colspan="3" style="height: 11px; width: 529px; text-align: center;">
+  <p style="text-align: left;">REMETENTE: campo_cliente_origem</p>
+  <p style="text-align: left;">TEL.:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; campo_telefone_origem</p>
+</td>
+</tr>
+<tr style="height: 11px;">
+<td style="height: 11px; width: 478px; text-align: center;" colspan="3">
+<p style="text-align: left;">HORARIO DE SA&Iacute;DA: campo_horario</p>
+</td>
+<td colspan="3" style="height: 11px; width: 529px; text-align: center;">
+  <p style="text-align: left;">DECLARO QUE ENVIO EM PERFEITO ESTADO OS VOLUMES DO PRESENTE</p>
+</td>
+</tr>
+<tr style="height: 11px;">
+  <td style="height: 11px; width: 200px; text-align: center;" colspan="3">
+  <p style="text-align: left;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;TIPO DE FRETE: campo_tipofrete</p>
+  <p style="text-align: left;">TIPO DE PAGAMENTO: campo_tipopagamento</p>
+  </td>
+  <td colspan="3" style="height: 11px; width: 529px; text-align: center;"><p style="text-align: left;"> ENVIADO _____/_____/______&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;______________________</p>  <p style="text-align: left;"><em>ASSINATURA</em></p></td>
+  </tr>
+<tr>
+  <th colspan="3">VOLUME</th>
+  <th>QUANTIDADE</th>
+  <th colspan="2">VALOR</th>
+</tr>
+<tr>
+  <td colspan="3">{{ object.get_venda.empresa }}</td>
+  <td>{{ object.get_venda.empresa }}</td>
+  <td colspan="2">{{ object.get_venda.empresa }}</td>
+</tr>
+<tr>
+  <td><p>Volumes campo_total</p>
+    <p>Siscom - Sistema de encomendas</p></td>
+  <td><p>Desconto</p>
+    <p>R$ campo_desconto</p></td>
+  <td><p>VALOR TOTAL MERCADORIAS</p>
+    <p>R$ campo_total_produtos</p></td>
+  <td><p>VALOR DINHEIRO</p>
+    <p>R$ campo_valor_dinheiro</p></td>
+  <td><p>VALOR CARTÃO</p>
+    <p>R$ campo_valor_cartão</p></td>
+  <td><p>VALOR DO FRETE</p>
+    <p>R$ campo_valor_frete</p></td>
+</tr>
+{% endblock body %}
+</tbody>
+</table>

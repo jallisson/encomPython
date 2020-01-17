@@ -1,0 +1,229 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+<script src="{% static 'admin/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'admin/js/jquery.mask.js' %}"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+&rsaquo; {% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; {% if add %}{% blocktrans with name=opts.verbose_name %}Add {{ name }}{% endblocktrans %}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+</div>
+{% endblock %}
+{% endif %}
+
+{% block content %}<div id="content-main">
+{% block object-tools %}
+{% if change %}{% if not is_popup %}
+  <ul class="object-tools">
+    {% block object-tools-items %}
+    <li>
+        {% url opts|admin_urlname:'history' original.pk|admin_urlquote as history_url %}
+        <a href="{% add_preserved_filters history_url %}" class="historylink">{% trans "History" %}</a>
+    </li>
+    {% if has_absolute_url %}<li><a href="{{ absolute_url }}" class="viewsitelink">{% trans "View on site" %}</a></li>{% endif %}
+    {% endblock %}
+  </ul>
+{% endif %}{% endif %}
+{% endblock %}
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.model_name }}_form" novalidate>{% csrf_token %}{% block form_top %}{% endblock %}
+<script>
+jQuery(document).ready(function($) {
+        
+        var $cnpj = $("#id_cnpj");
+
+        //$("#cnpj").mask("00.000.000/0000-00");
+        
+        $cnpj.mask('00.000.000/0000-00', {reverse: true})
+        
+    });
+jQuery(document).ready(function($) {
+        
+        var $cpf = $("#id_cpf");
+
+        //$("#cnpj").mask("00.000.000/0000-00");
+        
+        $cpf.mask('000.000.000-00', {reverse: true});
+        
+        
+    });
+jQuery(document).ready(function($) {
+        
+        var $hora_saida = $("#id_hora_saida");
+
+        //$("#cnpj").mask("00.000.000/0000-00");
+        
+        $hora_saida.mask('00:00', {reverse: true});
+        //$('.money').mask('000.000.000.000.000,00', {reverse: true});
+        
+        
+    });
+
+jQuery(document).ready(function($) {
+        
+        var $valor_dinheiro = $("#id_valor_dinheiro");
+
+        //$("#cnpj").mask("00.000.000/0000-00");
+        
+       
+         //$valor_dinheiro.mask('000.000.000.000.000,00', {reverse: true});
+        
+        
+    });
+
+</script>
+
+
+
+<script>
+
+$(function () {
+        $('input[name="valor_dinheiro"]').hide();
+        $('label[for="id_valor_dinheiro"]').hide();
+
+        //show it when the checkbox is clicked
+        $('input[name="dinheiro"]').on('click', function () {
+            if ($(this).prop('checked')) {
+                $('input[name="valor_dinheiro"]').fadeIn();
+                $('label[for="id_valor_dinheiro"]').fadeIn();
+            } else {
+                $('input[name="valor_dinheiro"]').fadeOut();
+                $('label[for="id_valor_dinheiro"]').fadeOut();
+            }
+        });
+    });
+  
+
+</script>
+
+<script>
+
+$(function () {
+        $('input[name="valor_cartao"]').hide();
+        $('label[for="id_valor_cartao"]').hide();
+        $('#id_cartoes').parent().hide();
+
+        //show it when the checkbox is clicked
+        $('input[name="cartao"]').on('click', function () {
+            if ($(this).prop('checked')) {
+                $('input[name="valor_cartao"]').fadeIn();
+                $('label[for="id_valor_cartao"]').fadeIn();
+                $('#id_cartoes').parent().fadeIn();
+            } else {
+                $('input[name="valor_cartao"]').fadeOut();
+                $('label[for="id_valor_cartao"]').fadeOut();
+                $('#id_cartoes').parent().fadeOut();
+            }
+        });
+    });
+  
+
+</script>
+
+<script>
+jQuery(document).ready(function($) {
+    $('input[type="radio"]').change(function(){
+        if ($(this).is('#id_tipo_1') || $(this).is('#id_tipo_2')){
+             $('#id_agencia, [for="id_agencia"]').parent().hide()
+             //$('#id_data_inicial, label[for="#id_data_inicial"]').parent().hide()
+             //$('#id_usuario, input[for="#id_usuario"]').parent().hide()
+
+            
+
+         }else{
+             $('#id_agencia, [for="id_agencia"]').parent().show()
+             //$('#id_data_inicial, label[for="#id_data_inicial"]').parent().show()
+             //$('#id_usuario, input[for="#id_usuario"]').parent().show()
+          
+
+         }
+   });
+});
+</script>
+
+
+<script>
+//fonte: https://jsfiddle.net/jm4ctv0m/3/
+jQuery(document).ready(function($) {
+    $('#id_responsavel_frete').change(function(){
+    var tipo = $("#id_responsavel_frete option:selected").text();
+    if (tipo == 'REMETENTE') {
+      alert("deu certo o se");
+    }else if (tipo == 'REDESPACHO') {
+        alert("deu certo o se  nao se");
+    }
+  });
+});
+</script>
+
+<script>
+//fonte: https://jsfiddle.net/jm4ctv0m/3/
+jQuery(document).ready(function($) {
+   $('#result_list .field-situacao_venda').each(function() {
+    if ($(this).text() == "CANCELADA") {
+        $(this).closest('tr').css("background-color", "red");
+    }
+});
+});
+</script>
+
+
+
+<div>
+{% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1" />{% endif %}
+{% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}" />{% endif %}
+{% if save_on_top %}{% block submit_buttons_top %}{% submit_row %}{% endblock %}{% endif %}
+{% if errors %}
+    <p class="errornote">
+    {% if errors|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+    </p>
+    {{ adminform.form.non_field_errors }}
+{% endif %}
+
+{% block field_sets %}
+{% for fieldset in adminform %}
+  {% include "admin/includes/fieldset.html" %}
+{% endfor %}
+{% endblock %}
+
+{% block after_field_sets %}{% endblock %}
+
+{% block inline_field_sets %}
+{% for inline_admin_formset in inline_admin_formsets %}
+    {% include inline_admin_formset.opts.template %}
+{% endfor %}
+{% endblock %}
+
+{% block after_related_objects %}{% endblock %}
+
+{% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
+
+{% block admin_change_form_document_ready %}
+    <script type="text/javascript"
+            id="django-admin-form-add-constants"
+            src="{% static 'admin/js/change_form.js' %}"
+            {% if adminform and add %}
+                data-model-name="{{ opts.model_name }}"
+            {% endif %}>
+    </script>
+{% endblock %}
+
+{# JavaScript for prepopulated fields #}
+{% prepopulated_fields_js %}
+
+</div>
+</form></div>
+{% endblock %}
