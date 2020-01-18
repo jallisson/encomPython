@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     #'suit',
     #'jet.dashboard',
     'jet',
+    #'suit',
+    #'encom.apps.SuitConfig',
     'encom.apps.EncomConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -193,4 +195,3 @@ JET_THEMES = [
         'title': 'Light Gray'
     }
 ]
-

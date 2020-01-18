@@ -3,6 +3,7 @@ from django.conf.urls import include, url
 from django.views.generic.base import TemplateView
 from django.views.generic.base import RedirectView
 
+
 from . import views
 from .views import VendaDetail
 #from .views import RelatorioListView

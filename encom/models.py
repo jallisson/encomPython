@@ -18,20 +18,12 @@ from django import forms
 class Carro(models.Model):
     nome = models.CharField(max_length=200)
 
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'nome',
-
     def __str__(self):
         return self.nome
         
 class Localidade(models.Model):
     nome = models.CharField(max_length=200)
     uf = models.CharField(max_length=50, choices = STATE_CHOICES)
-
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'nome',
 
     def __str__(self):
         return self.nome
@@ -44,15 +36,8 @@ class Agencia(models.Model):
     localidade = models.ForeignKey(Localidade, on_delete=models.CASCADE)
     nome = models.CharField(max_length=200)
 
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'nome',
-
     def __str__(self):
         return self.nome
-
-    
-
 
 class Cliente(models.Model):
     nome = models.CharField(max_length=50)
@@ -83,10 +68,6 @@ class Empresa(models.Model):
     cnpj = models.CharField(max_length=18)
     ie = models.CharField(max_length=50)
 
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'nome',
-
     def __str__(self):
         return self.nome
 
@@ -101,10 +82,6 @@ class Produto(models.Model):
     valor = models.DecimalField(verbose_name=u'valor',
                                  max_digits=15, decimal_places=2)
     #estoque = models.PositiveIntegerField(null=True, blank=False)
-
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'nome',
     
     def __str__(self):
         return '%s %s' % (self.nome,  str(self.valor))
@@ -118,10 +95,6 @@ class Motorista(models.Model):
     chapa = models.CharField(max_length=200)
     nome = models.CharField(max_length=200)
     cpf = models.CharField(max_length=14)
-
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'nome',
 
     def __str__(self):
         return self.nome
@@ -188,13 +161,6 @@ class Venda(models.Model):
     agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
     #produto = models.ManyToManyField(Produto, blank=False, default=None)
 
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'cliente_origem',
-
-    @staticmethod
-    def autocomplete_search_fields():
-        return 'cliente_destino',
 
     def __str__(self):
         return str(self.id)
