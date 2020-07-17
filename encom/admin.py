@@ -9,6 +9,7 @@ from .models import Venda
 from .models import Item
 from .models import Relatorio
 from .models import Recebimento
+from .models import ExcessoBagagem
 from django import forms
 from django.forms.models import BaseInlineFormSet
 
@@ -222,6 +223,30 @@ class MotoristaAdmin(admin.ModelAdmin):
    class Meta:
              model = Motorista
 
+class ExcessoBagagemAdmin(admin.ModelAdmin):
+
+   list_display = ('numero', 'cliente','data','intinerario_origem','intinerario_destino','imprimir',)
+   list_per_page = 50
+   search_fields = ('cliente','numero',)
+   ordering = ('cliente',)
+
+   class Meta:
+             model = ExcessoBagagem
+
+   fieldsets = [
+            ('Dados Principais', {
+                'classes': ('suit-tab', 'suit-tab-general',),
+                'fields': ['cliente', 'numero', 'volume', 'data', 'intinerario_origem', 'intinerario_destino', 'valor'],
+            }),]
+
+
+   def save_model(self, request, obj, form, change):
+            if getattr(obj, 'usuario', None) is None:
+                    obj.usuario = request.user
+            #if getattr(obj, 'agencia', None) is None:
+            #        obj.agencia = request.user.groups.first()
+            obj.save()
+
 class RecebimentoAdmin(admin.ModelAdmin):
    
    list_filter = ('usuario',)
@@ -260,3 +285,4 @@ admin.site.register(Motorista, MotoristaAdmin)
 admin.site.register(Venda, VendaAdmin)
 admin.site.register(Relatorio, RelatorioAdmin)
 admin.site.register(Recebimento, RecebimentoAdmin)
+admin.site.register(ExcessoBagagem, ExcessoBagagemAdmin)

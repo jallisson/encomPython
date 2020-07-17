@@ -161,6 +161,9 @@ class Venda(models.Model):
     agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
     #produto = models.ManyToManyField(Produto, blank=False, default=None)
 
+    staticmethod
+    def autocomplete_search_fields():
+        return id,
 
     def __str__(self):
         return str(self.id)
@@ -225,6 +228,26 @@ class Venda(models.Model):
     #def get_absolute_url2(self):
     #    return reverse('venda_list', args=[self.pk, ])
 
+class ExcessoBagagem(models.Model):
+    cliente = models.CharField(max_length=200)
+    numero = models.CharField(max_length=200)
+    volume = models.PositiveIntegerField(null=True, blank=False)
+    data = models.DateField(default=timezone.now)
+    intinerario_origem = models.ForeignKey(Localidade, on_delete=models.CASCADE, verbose_name=u'Intinerario. Origem', related_name ='intinerario_origem')
+    intinerario_destino = models.ForeignKey(Localidade, on_delete=models.CASCADE, verbose_name=u'Intinerario. Destino', related_name ='intinerario_destino')  
+    valor = models.DecimalField(verbose_name=u'Valor',
+                                 max_digits=15, decimal_places=2,  default=Decimal('0.00'))
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def imprimir(self):
+        return mark_safe("<a target='_blank' href='%s'>Imprimir</a>" % self.get_absolute_url())
+    imprimir.allow_tags = True  
+
+    def get_absolute_url(self):
+        return reverse('excessobagagem_detail', args=[self.pk, ])
+    #sem essa função 
+    def get_excessobagagem(self):
+        return ExcessoBagagem.objects.get(pk=self.pk)
 
     
 class Item(models.Model):
@@ -242,9 +265,6 @@ class Recebimento(models.Model):
     def _str_(self):
         return self.data_recebimento
 
-
-
-    
     
         #return  valor['valor']
 

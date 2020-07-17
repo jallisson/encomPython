@@ -10,6 +10,7 @@ from django.contrib.auth.models import User, Group
 from .models import Venda
 from .models import Recebimento
 from .models import Relatorio
+from .models import ExcessoBagagem
 from django.http import HttpResponse
 
 def index(request):
@@ -23,6 +24,15 @@ class VendaDetail(DetailView):
         obj = Venda.objects.get(pk=pk)
         #return 'encom/qualquer.html'
         return 'encom/teste.html'
+
+
+class ExcessoBagagemDetail(DetailView):
+    model = ExcessoBagagem
+
+    def get_template_names(self):
+        pk = self.kwargs['pk']
+        obj = ExcessoBagagem.objects.get(pk=pk)
+        return 'encom/bagagem_data_list.html'
 
 
 
@@ -52,6 +62,9 @@ class RelatorioDetail(DetailView):
 
         )
 
+
+    
+    
 
 
 #class RelatorioListView(ListView):
