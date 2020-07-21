@@ -225,9 +225,9 @@ class MotoristaAdmin(admin.ModelAdmin):
 
 class ExcessoBagagemAdmin(admin.ModelAdmin):
 
-   list_display = ('numero', 'cliente','data','intinerario_origem','intinerario_destino','imprimir',)
+   list_display = ('id','empresa', 'numero', 'cliente','data','intinerario_origem','intinerario_destino','imprimir',)
    list_per_page = 50
-   search_fields = ('cliente','numero',)
+   search_fields = ('id','numero','cliente')
    ordering = ('cliente',)
 
    class Meta:
@@ -236,7 +236,7 @@ class ExcessoBagagemAdmin(admin.ModelAdmin):
    fieldsets = [
             ('Dados Principais', {
                 'classes': ('suit-tab', 'suit-tab-general',),
-                'fields': ['cliente', 'numero', 'volume', 'data', 'intinerario_origem', 'intinerario_destino', 'valor'],
+                'fields': ['empresa', 'cliente', 'numero', 'volume', 'data', 'intinerario_origem', 'intinerario_destino', 'valor'],
             }),]
 
 

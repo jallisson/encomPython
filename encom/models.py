@@ -229,6 +229,7 @@ class Venda(models.Model):
     #    return reverse('venda_list', args=[self.pk, ])
 
 class ExcessoBagagem(models.Model):
+    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, default=None,)
     cliente = models.CharField(max_length=200)
     numero = models.CharField(max_length=200)
     volume = models.PositiveIntegerField(null=True, blank=False)
