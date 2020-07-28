@@ -249,9 +249,10 @@ class ExcessoBagagemAdmin(admin.ModelAdmin):
 
 class RecebimentoAdmin(admin.ModelAdmin):
    
-   list_filter = ('usuario',)
+   #list_filter = ('usuario',)
    list_display = ('venda', 'data_recebimento', 'agencia', 'usuario',)
    list_per_page = 50
+   search_fields = ('venda',)
 
    class Meta:
              model = Recebimento

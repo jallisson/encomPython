@@ -161,9 +161,13 @@ class Venda(models.Model):
     agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
     #produto = models.ManyToManyField(Produto, blank=False, default=None)
 
-    staticmethod
+    #staticmethod
+    #def autocomplete_search_fields():
+    #    return id,
+
+    @staticmethod
     def autocomplete_search_fields():
-        return id,
+        return 'id',
 
     def __str__(self):
         return str(self.id)
@@ -262,6 +266,9 @@ class Recebimento(models.Model):
     venda = models.ForeignKey(Venda, on_delete=models.CASCADE, default=None, verbose_name=u'venda', related_name ='venda', unique=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
+
+    #class Meta:
+    #    ordering = ["venda"]
 
     def _str_(self):
         return self.data_recebimento
