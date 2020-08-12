@@ -299,7 +299,7 @@ class Manifesto(models.Model):
         
     def total(self):
         #Entry.objects.filter(blog_id=4)
-        teste = Venda.objects.all()
+        #teste = Venda.objects.all()
         soma = Venda.objects.filter(id=self.id).aggregate(total=Sum('item__qtde', flat = True))
         return soma['total']
        
