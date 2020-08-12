@@ -181,7 +181,8 @@ class Venda(models.Model):
 
     def get_venda(self):
         return Venda.objects.get(pk=self.pk)
-
+    
+    #soma o total de volume no relatorio
     def total(self):
         soma = Venda.objects.filter(id=self.id).aggregate(total=Sum('item__qtde', flat = True))
         return soma['total']
@@ -250,7 +251,7 @@ class ExcessoBagagem(models.Model):
 
     def get_absolute_url(self):
         return reverse('excessobagagem_detail', args=[self.pk, ])
-    #sem essa função 
+    #sem essa função não aparece as variaveis
     def get_excessobagagem(self):
         return ExcessoBagagem.objects.get(pk=self.pk)
 
@@ -266,12 +267,52 @@ class Recebimento(models.Model):
     venda = models.ForeignKey(Venda, on_delete=models.CASCADE, default=None, verbose_name=u'venda', related_name ='venda', unique=True)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
+    
 
     #class Meta:
     #    ordering = ["venda"]
 
     def _str_(self):
         return self.data_recebimento
+
+
+class Manifesto(models.Model):
+    data_venda = models.DateField(default=timezone.now)
+    carro = models.ForeignKey(Carro, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+   # venda = models.ForeignKey(Venda, on_delete=models.CASCADE, default=None, null=True, blank=True)
+
+    #agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
+
+    #class Meta:
+    #    ordering = ["venda"]
+
+    def imprimir(self):
+        return mark_safe("<a target='_blank' href='%s'>Imprimir</a>" % self.get_absolute_url())
+    imprimir.allow_tags = True  
+
+    def get_absolute_url(self):
+        return reverse('manifesto_detail', args=[self.pk, ])
+    #sem essa função não aparece as variaveis
+    def get_manifesto(self):
+        return Manifesto.objects.get(pk=self.pk)
+        
+    def total(self):
+        #Entry.objects.filter(blog_id=4)
+        teste = Venda.objects.all()
+        soma = Venda.objects.filter(id=self.id).aggregate(total=Sum('item__qtde', flat = True))
+        return soma['total']
+       
+
+    
+        
+
+   # def valor_nota(self, force_insert=False, force_update=False):
+    #    return Venda.objects.get(valor_dinheiro=self.valor_dinheiro) + self.valor_cartao
+
+    
+    def _str_(self):
+        return self.carro
 
     
         #return  valor['valor']

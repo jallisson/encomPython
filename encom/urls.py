@@ -22,5 +22,6 @@ urlpatterns = [
 	
 	#url(r'^excessobagagem/(?P<pk>\d+)/$', ExcessoBagagemDetail.as_view(), name='bagagem_data_list'),
 	path('excessobagagem/<int:pk>', login_required(views.ExcessoBagagemDetail.as_view(template_name='encom/bagagem_data_list.html')), name='excessobagagem_detail'),
+	path('manifesto/<int:pk>', login_required(views.ManifestoDetail.as_view(template_name='encom/manifesto_data_list.html')), name='manifesto_detail'),
 
 ]

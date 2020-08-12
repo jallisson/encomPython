@@ -1,0 +1,248 @@
+{% load encom_tags %}
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+  <style>
+{% block style %}
+    body{
+  font-family:"Times New Roman", Georgia, Serif;
+        font-size:10pt;
+    }
+    
+    p{
+        text-align: justify;
+        margin: 5mm 15mm 0 25mm;
+    }
+    .footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
+    .direita{
+        float: right;
+        font-style: italic;
+  width:100%;
+  text-align:right;
+    }
+    .frente{
+        margin-top: 10mm;
+    }
+    .verso{
+        margin-top: 100mm;
+        font-style: italic;
+    }
+    .numero{
+        position: absolute;
+        width: 38mm;
+        height: 11mm;
+        top: 271mm;
+        left: 46mm;
+  text-align:center;
+    }
+    .valores{
+  text-align:right;
+    }
+    .linha{
+        width: 250mm;
+        border-top:solid 0.2mm #000;
+        display: inline-block;
+        margin: 0mm 15mm 10mm 0mm;
+    }
+    .assinatura{
+        float: left;
+        margin: 10mm 0 0 10mm;
+        padding: 10mm 10mm 0 10mm;
+    }
+    #serf{
+      font-size:12pt;
+      margin:65mm 15mm 0 5mm;
+    }
+    .segundavia{
+        font-size: 35pt;
+        text-align: right;
+        margin-top: 20mm;
+    }
+    .sem{
+        border: none;
+    }
+    table, th, td {
+    border: 0px solid     #778899;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 3px;
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+{% endblock style %}
+</style>
+  </head>
+<body>
+
+{% block body %}
+<span class="numero"></span>
+
+<table border="0" cellspacing="0" rules="none" align="center" >
+  <tr class="sem">
+    <td class="sem"><img  width="80" height="30" src='/static/img/logoacaiex.jpeg'/></td>
+    
+    <td class="sem"> Sistema Rápido de Encomendas</td> 
+  </tr>
+ 
+</table>
+    <ul>
+   
+        <table style="width:100%">
+
+    <tr>
+      
+    Relatório do dia {{ object.data_venda }} do Carro: {{object.carro}}
+<hr />
+     <th>ACAIEX</th>   
+     <th>DATA</th>
+     <th>VOLUME</th>
+     <th>CARRO</th>
+     
+     
+     
+
+{% for venda in venda_list %}
+    </tr>
+    
+     <tr>
+       
+       <td style= "middle;text-align: center" >{{ venda.id }}</td>
+       <td style= "middle;text-align: center" >{{ venda.data_venda }}</td> 
+       <td style= "middle;text-align: center" >{{ object.total }}</td> 
+       <td style= "middle;text-align: center" >{{ venda.carro }}</td>
+           
+       
+     </tr>
+
+     {% empty %}
+     Não há registros para as datas selecionadas.
+     {% endfor %}   
+
+
+ </table>
+  
+<hr />
+        <div align="right">Total de <strong>{{ venda_list|length }}</strong> registro(s).</div>
+        <div align="right">Valor Total de R$ <strong>{{ object.get_valor}}</strong></div>
+</p>
+_______________________________________________________
+</p>
+<div align="left">Assinatura do Agente Emissor</div>
+</p>
+_______________________________________________________
+</p>
+<div align="rigth">Assinatura do Motorista</div>
+</p>
+
+ {% if object.tipo == "RECEBIMENTO" %}
+        <table style="width:100%">
+
+    <tr>
+      {% if object.data_inicial == object.data_final %}
+    Relatorio de Recebimento do Agente: {{object.usuario}} do dia {{ object.data_inicial }}
+    {% else %}
+       Relatorio de Recebimento do Agente: {{object.usuario}} no período {{ object.data_inicial }} ate {{ object.data_final }} 
+       {% endif %}
+     <th>AÇAIEX</th>   
+     <th>DATA RECEBIMENTO</th>
+     <th>REMETENTE</th>
+     <th>DESTINO</th>
+     <th>VALOR</th>
+     <th>AGENTE</th>
+     
+     
+{% for recebimento in recebimento_list %}
+    </tr>
+    
+     <tr>
+       
+       <td>{{ recebimento.venda.id }}</td>
+       <td>{{ recebimento.data_recebimento }}</td> 
+       <td>{{ recebimento.venda.cliente_origem }}</td>
+       <td>{{ recebimento.venda.localidade_destino }}</td>
+       <td>{{ recebimento.venda.valor_nota }}</td>
+       <td>{{ recebimento.usuario }}</td>
+
+
+           
+       
+     </tr>
+
+     {% empty %}
+     Não há registros para as datas selecionadas.
+     {% endfor %}   
+
+
+ </table>
+  
+
+        <div align="right">Total de <strong>{{ recebimento_list|length }}</strong> registro(s).</div>
+        <div align="right">Valor Total de R$<strong>{{ object.get_valor_recebimento }}</strong></div>
+        <div align="right">Valor da Porcentagem de R$<strong>{{ object.get_valor_comissao }}</strong></div>
+
+</p>
+</p>
+{% endif %}
+
+</table>
+    <ul>
+    {% if object.tipo == "GERAL" %}
+        <table style="width:100%">
+
+    <tr>
+      {% if object.data_inicial == object.data_final %}
+    Relatório do dia {{ object.data_inicial }} 
+    {% else %}
+       Relatorio de {{ object.data_inicial }} ate {{ object.data_final }} 
+       {% endif %}
+     <th>ACAIEX</th>   
+     <th>DATA</th>
+     <th>REMETENTE</th>
+     <th>DESTINATARIO</th>
+     <th>DESTINO</th>
+     <th>VALOR</th>
+     
+     
+     
+
+{% for venda in geral_list %}
+    </tr>
+    
+     <tr>
+       
+       <td>{{ venda.id }}</td>
+       <td>{{ venda.data_venda }}</td> 
+       <td>{{ venda.cliente_origem }}</td>
+       <td>{{ venda.cliente_destino }}</td>
+       <td>{{ venda.localidade_destino }}</td>
+       <td class="valores">{{ venda.valor_nota }}</td>
+           
+       
+     </tr>
+
+     {% empty %}
+     Não há registros para as datas selecionadas.
+     {% endfor %}   
+
+
+ </table>
+  
+
+        <div align="right">Total de <strong>{{ geral_list|length }}</strong> registro(s).</div>
+        <div align="right">Valor Total de R$ <strong>{{ object.get_valor_geral}}</strong></div>
+</p>
+{% endif %}
+
+{% endblock body %}
+<script>
+(function(){
+    window.print();
+})();
+</script>
+</body>
+</html>

@@ -10,6 +10,7 @@ from .models import Item
 from .models import Relatorio
 from .models import Recebimento
 from .models import ExcessoBagagem
+from .models import Manifesto
 from django import forms
 from django.forms.models import BaseInlineFormSet
 
@@ -270,6 +271,28 @@ class RecebimentoAdmin(admin.ModelAdmin):
                     obj.agencia = request.user.groups.first()
             obj.save()
 
+class ManifestoAdmin(admin.ModelAdmin):
+   
+   #list_filter = ('usuario',)
+   list_display = ('data_venda', 'carro', 'usuario', 'imprimir',)
+   list_per_page = 50
+   search_fields = ('data_venda',)
+
+   class Meta:
+             model = Manifesto
+
+   fieldsets = [
+            ('Dados Principais', {
+                'classes': ('suit-tab', 'suit-tab-general',),
+                'fields': ['data_venda', 'carro'],
+            }),]
+
+   def save_model(self, request, obj, form, change):
+            if getattr(obj, 'usuario', None) is None:
+                    obj.usuario = request.user
+            #if getattr(obj, 'agencia', None) is None:
+             #       obj.agencia = request.user.groups.first()
+            obj.save()
 
 
 
@@ -287,3 +310,4 @@ admin.site.register(Venda, VendaAdmin)
 admin.site.register(Relatorio, RelatorioAdmin)
 admin.site.register(Recebimento, RecebimentoAdmin)
 admin.site.register(ExcessoBagagem, ExcessoBagagemAdmin)
+admin.site.register(Manifesto, ManifestoAdmin)
