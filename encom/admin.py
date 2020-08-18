@@ -41,7 +41,7 @@ class ItemInline(admin.TabularInline):
 class VendaAdmin(admin.ModelAdmin):
     
 	 
-    list_display = ('id', 'imprimir','carro', 'agencia', 'localidade_origem', 'localidade_destino', 'tipo_frete', 'responsavel_frete', 'get_clienteo', 'get_cliented', 'valor_nota', 'data_venda', 'situacao_venda', 'usuario',)#, 'lista')
+    list_display = ('id', 'imprimir','carro', 'data_venda', 'agencia', 'localidade_origem', 'localidade_destino', 'tipo_frete', 'responsavel_frete', 'get_clienteo', 'get_cliented', 'valor_nota', 'situacao_venda', 'usuario',)#, 'lista')
     list_filter = ('id',)
     inlines = [ItemInline]
     list_per_page = 10
