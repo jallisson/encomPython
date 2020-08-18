@@ -191,6 +191,7 @@ class Venda(models.Model):
         soma = Venda.objects.filter(id=self.id).aggregate(valortotal=Sum(F('item__produto__valor') * F('item__qtde'), output_field=FloatField()))
         return soma['valortotal']
 
+
     def valortotalnota(self):
         return self.valor_nota   
 
@@ -235,10 +236,12 @@ class Venda(models.Model):
 
 class ExcessoBagagem(models.Model):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, default=None,)
-    cliente = models.CharField(max_length=200)
-    numero = models.CharField(max_length=200)
-    volume = models.PositiveIntegerField(null=True, blank=False)
+    hora_saida = models.TimeField(max_length=6)
     data = models.DateField(default=timezone.now)
+    carro = models.ForeignKey(Carro, on_delete=models.CASCADE)
+    cliente = models.CharField(max_length=200)
+    quantidade = models.PositiveIntegerField(null=True, blank=False)
+    item = models.CharField(max_length=200)    
     intinerario_origem = models.ForeignKey(Localidade, on_delete=models.CASCADE, verbose_name=u'Intinerario. Origem', related_name ='intinerario_origem')
     intinerario_destino = models.ForeignKey(Localidade, on_delete=models.CASCADE, verbose_name=u'Intinerario. Destino', related_name ='intinerario_destino')  
     valor = models.DecimalField(verbose_name=u'Valor',
@@ -296,21 +299,11 @@ class Manifesto(models.Model):
     #sem essa função não aparece as variaveis
     def get_manifesto(self):
         return Manifesto.objects.get(pk=self.pk)
-        
-    def total(self):
-        #Entry.objects.filter(blog_id=4)
-        #teste = Venda.objects.all()
-        soma = Venda.objects.filter(id=self.id).aggregate(total=Sum('item__qtde', flat = True))
+
+    def totalvolumes(self):
+        soma = Venda.objects.filter(data_venda=self.data_venda).aggregate(total=Sum('item__qtde', flat = True))
         return soma['total']
-       
 
-    
-        
-
-   # def valor_nota(self, force_insert=False, force_update=False):
-    #    return Venda.objects.get(valor_dinheiro=self.valor_dinheiro) + self.valor_cartao
-
-    
     def _str_(self):
         return self.carro
 

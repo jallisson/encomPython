@@ -95,27 +95,30 @@ tr:nth-child(even) {background-color: #f2f2f2;}
         <table style="width:100%">
 
     <tr>
-      
-    Relatório do dia {{ object.data_venda }} do Carro: {{object.carro}}
+      <div align="center" style="font-size : 30px;">Manifesto de Envio</div><br><br> 
+    Data do manifesto {{ manifesto.data_venda }} - Carro: {{manifesto.carro}} - Numero manifesto: {{manifesto.id}}
+
 <hr />
-     <th>ACAIEX</th>   
-     <th>DATA</th>
+     <th>ACAIEX</th>
+     <th>ORIGEM</th>
+     <th>DESTINO</th>
+     <th>DESTINATARIO</th>
      <th>VOLUME</th>
-     <th>CARRO</th>
-     
      
      
 
+
 {% for venda in venda_list %}
+
     </tr>
     
      <tr>
        
        <td style= "middle;text-align: center" >{{ venda.id }}</td>
-       <td style= "middle;text-align: center" >{{ venda.data_venda }}</td> 
-       <td style= "middle;text-align: center" >{{ object.total }}</td> 
-       <td style= "middle;text-align: center" >{{ venda.carro }}</td>
-           
+       <td style= "middle;text-align: center" >{{ venda.localidade_origem }}</td>
+       <td style= "middle;text-align: center" >{{ venda.localidade_destino }}</td>
+       <td style= "middle;text-align: center" >{{ venda.cliente_destino }}</td>
+       <td style= "middle;text-align: center" >{{ venda.total }}</td>            
        
      </tr>
 
@@ -125,18 +128,15 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 
  </table>
-  
+
 <hr />
-        <div align="right">Total de <strong>{{ venda_list|length }}</strong> registro(s).</div>
-        <div align="right">Valor Total de R$ <strong>{{ object.get_valor}}</strong></div>
-</p>
-_______________________________________________________
-</p>
-<div align="left">Assinatura do Agente Emissor</div>
-</p>
-_______________________________________________________
-</p>
-<div align="rigth">Assinatura do Motorista</div>
+        <div align="right">Total de Açaiex <strong>{{ venda_list|length }}</strong> registro(s).</div>
+        <div align="right">Total de Volumes: <strong>{{ manifesto.totalvolumes }}</strong></div>
+<br><br>
+<div align="center">_______________________________________________________</div>
+<div align="center">Assinatura do Agente Emissor</div><br><br>
+<div align="center">_______________________________________________________</div>
+<div align="center">Assinatura do Motorista</div>
 </p>
 
  {% if object.tipo == "RECEBIMENTO" %}
