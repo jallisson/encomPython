@@ -187,6 +187,10 @@ class Venda(models.Model):
         soma = Venda.objects.filter(id=self.id).aggregate(total=Sum('item__qtde', flat = True))
         return soma['total']
 
+    def totalvolumes(self):
+        soma = Venda.objects.filter(data_venda=self.data_venda).aggregate(totalvolumes=Sum('item__qtde', flat = True))
+        return soma['totalvolumes']
+    
     def valortotal(self):
         soma = Venda.objects.filter(id=self.id).aggregate(valortotal=Sum(F('item__produto__valor') * F('item__qtde'), output_field=FloatField()))
         return soma['valortotal']
@@ -301,8 +305,8 @@ class Manifesto(models.Model):
         return Manifesto.objects.get(pk=self.pk)
 
     def totalvolumes(self):
-        soma = Venda.objects.filter(data_venda=self.data_venda).aggregate(total=Sum('item__qtde', flat = True))
-        return soma['total']
+        soma = Venda.objects.filter(data_venda=self.data_venda).filter(carro=self.carro).aggregate(totalvolumes=Sum('item__qtde', flat = True))
+        return soma['totalvolumes']
 
     def _str_(self):
         return self.carro
