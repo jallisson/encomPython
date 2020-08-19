@@ -287,6 +287,7 @@ class Manifesto(models.Model):
     data_venda = models.DateField(default=timezone.now)
     carro = models.ForeignKey(Carro, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    hora_manifesto = models.TimeField(auto_now=True, max_length=6, default=timezone.now)
    # venda = models.ForeignKey(Venda, on_delete=models.CASCADE, default=None, null=True, blank=True)
 
     #agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
