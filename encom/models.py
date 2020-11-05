@@ -282,7 +282,7 @@ class Recebimento(models.Model):
     def _str_(self):
         return self.data_recebimento
 
-
+#teste
 class Manifesto(models.Model):
     data_venda = models.DateField(default=timezone.now)
     carro = models.ForeignKey(Carro, on_delete=models.CASCADE)
