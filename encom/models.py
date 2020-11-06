@@ -288,6 +288,7 @@ class Manifesto(models.Model):
     carro = models.ForeignKey(Carro, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     hora_manifesto = models.TimeField(default=timezone.now, max_length=6)
+    agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
    # venda = models.ForeignKey(Venda, on_delete=models.CASCADE, default=None, null=True, blank=True)
 
     #agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
@@ -306,7 +307,9 @@ class Manifesto(models.Model):
         return Manifesto.objects.get(pk=self.pk)
 
     def totalvolumes(self):
-        soma = Venda.objects.filter(data_venda=self.data_venda).filter(carro=self.carro).aggregate(totalvolumes=Sum('item__qtde', flat = True))
+        # total sem filtro de agencia
+        #soma = Venda.objects.filter(data_venda=self.data_venda).filter(carro=self.carro).aggregate(totalvolumes=Sum('item__qtde', flat = True))
+        soma = Venda.objects.filter(data_venda=self.data_venda).filter(carro=self.carro).filter(agencia=self.agencia).aggregate(totalvolumes=Sum('item__qtde', flat = True))
         return soma['totalvolumes']
 
     def _str_(self):

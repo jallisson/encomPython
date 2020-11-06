@@ -76,7 +76,10 @@ th, td {
 tr:nth-child(even) {background-color: #f2f2f2;}
 {% endblock style %}
 </style>
-  </head>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ 
+</head>
 <body>
 
 {% block body %}
@@ -99,11 +102,11 @@ tr:nth-child(even) {background-color: #f2f2f2;}
     Data do Manifesto: {{ manifesto.data_venda }} - Hora do Manifesto: {{manifesto.hora_manifesto}} - Carro: {{manifesto.carro}} - Numero manifesto: {{manifesto.id}}
 
 <hr />
-     <th>ACAIEX</th>
-     <th>ORIGEM</th>
-     <th>DESTINO</th>
-     <th>DESTINATARIO</th>
-     <th>VOLUME</th>
+     <th style= "middle;text-align: center" >ACAIEX</th>
+     <th style= "middle;text-align: center" >ORIGEM</th>
+     <th style= "middle;text-align: center">DESTINO</th>
+     <th style= "middle;text-align: center">DESTINATARIO</th>
+     <th style= "middle;text-align: center">VOLUME</th>
      
      
 
@@ -133,110 +136,20 @@ tr:nth-child(even) {background-color: #f2f2f2;}
         <div align="right">Total de Açaiex <strong>{{ venda_list|length }}</strong> registro(s).</div>
         <div align="right">Total de Volumes: <strong>{{ manifesto.totalvolumes }}</strong></div>
 <br><br>
-<div align="center">_______________________________________________________</div>
-<div align="center">Assinatura do Agente Emissor</div><br><br>
-<div align="center">_______________________________________________________</div>
-<div align="center">Assinatura do Motorista</div>
-</p>
 
- {% if object.tipo == "RECEBIMENTO" %}
-        <table style="width:100%">
+<div class="container">
+  <div class="row">
+    <div align="center" class="col">
+      _______________________________________________________<br>
+	  Assinatura do Agente Emissor
+    </div>
+    <div align="center" class="col">
+      _______________________________________________________<br>
+	  Assinatura do Motorista
+    </div>
+  </div>
+</div>
 
-    <tr>
-      {% if object.data_inicial == object.data_final %}
-    Relatorio de Recebimento do Agente: {{object.usuario}} do dia {{ object.data_inicial }}
-    {% else %}
-       Relatorio de Recebimento do Agente: {{object.usuario}} no período {{ object.data_inicial }} ate {{ object.data_final }} 
-       {% endif %}
-     <th>AÇAIEX</th>   
-     <th>DATA RECEBIMENTO</th>
-     <th>REMETENTE</th>
-     <th>DESTINO</th>
-     <th>VALOR</th>
-     <th>AGENTE</th>
-     
-     
-{% for recebimento in recebimento_list %}
-    </tr>
-    
-     <tr>
-       
-       <td>{{ recebimento.venda.id }}</td>
-       <td>{{ recebimento.data_recebimento }}</td> 
-       <td>{{ recebimento.venda.cliente_origem }}</td>
-       <td>{{ recebimento.venda.localidade_destino }}</td>
-       <td>{{ recebimento.venda.valor_nota }}</td>
-       <td>{{ recebimento.usuario }}</td>
-
-
-           
-       
-     </tr>
-
-     {% empty %}
-     Não há registros para as datas selecionadas.
-     {% endfor %}   
-
-
- </table>
-  
-
-        <div align="right">Total de <strong>{{ recebimento_list|length }}</strong> registro(s).</div>
-        <div align="right">Valor Total de R$<strong>{{ object.get_valor_recebimento }}</strong></div>
-        <div align="right">Valor da Porcentagem de R$<strong>{{ object.get_valor_comissao }}</strong></div>
-
-</p>
-</p>
-{% endif %}
-
-</table>
-    <ul>
-    {% if object.tipo == "GERAL" %}
-        <table style="width:100%">
-
-    <tr>
-      {% if object.data_inicial == object.data_final %}
-    Relatório do dia {{ object.data_inicial }} 
-    {% else %}
-       Relatorio de {{ object.data_inicial }} ate {{ object.data_final }} 
-       {% endif %}
-     <th>ACAIEX</th>   
-     <th>DATA</th>
-     <th>REMETENTE</th>
-     <th>DESTINATARIO</th>
-     <th>DESTINO</th>
-     <th>VALOR</th>
-     
-     
-     
-
-{% for venda in geral_list %}
-    </tr>
-    
-     <tr>
-       
-       <td>{{ venda.id }}</td>
-       <td>{{ venda.data_venda }}</td> 
-       <td>{{ venda.cliente_origem }}</td>
-       <td>{{ venda.cliente_destino }}</td>
-       <td>{{ venda.localidade_destino }}</td>
-       <td class="valores">{{ venda.valor_nota }}</td>
-           
-       
-     </tr>
-
-     {% empty %}
-     Não há registros para as datas selecionadas.
-     {% endfor %}   
-
-
- </table>
-  
-
-        <div align="right">Total de <strong>{{ geral_list|length }}</strong> registro(s).</div>
-        <div align="right">Valor Total de R$ <strong>{{ object.get_valor_geral}}</strong></div>
-</p>
-{% endif %}
 
 {% endblock body %}
 <script>

@@ -75,18 +75,15 @@ class ManifestoDetail(DetailView):
     def get_context_data(self, **kwargs):
         data = self.object.data_venda
         car = self.object.carro
-        #fim = self.object.data_final
-        #grupo = self.object.agencia
-        #usuario = self.object.usuario
-        #usuario = self.object.usuario
-        #eturn self.model.filter(user=request.user)
+        grupo = self.object.agencia
     	
         return dict(
             super(ManifestoDetail, self).get_context_data(**kwargs),
-            venda_list = Venda.objects.filter(data_venda__range=[data, data]).filter(carro=car),
-            #recebimento_list = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=self.request.user),
-            #geral_list = Venda.objects.filter(data_venda__range=[inicio, fim]),
-            #recebimento_list = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=self.request.user), filtro buscando usuario logado
+
+            #manifesto geral sem filtro de agencia
+            #venda_list = Venda.objects.filter(data_venda__range=[data, data]).filter(carro=car),
+
+            venda_list = Venda.objects.filter(data_venda__range=[data, data]).filter(carro=car).filter(agencia=grupo),
 
         )
 

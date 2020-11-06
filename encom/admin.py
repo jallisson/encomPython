@@ -156,6 +156,22 @@ class RelatorioAdmin(admin.ModelAdmin):
             #        obj.agencia = request.user.groups.first()
             obj.save()
 
+   def get_queryset(self, request):
+        qs = super(RelatorioAdmin, self).get_queryset(request)
+        
+        if not self.agencia == 'GERCOM':
+         return qs.filter(agencia=request.user.groups.first())	
+        else:
+         
+         return qs.filter()
+   
+   def get_queryset(self, request):
+        qs = super(RelatorioAdmin, self).get_queryset(request)
+        if not (request.user.is_superuser or request.user.groups.filter(name__iexact='GERCOM').exists()):         
+         return qs.filter(agencia=request.user.groups.first())
+        else:
+         return qs.filter()
+
     
 
 class CarroAdmin(admin.ModelAdmin):
@@ -274,7 +290,7 @@ class RecebimentoAdmin(admin.ModelAdmin):
 class ManifestoAdmin(admin.ModelAdmin):
    
    #list_filter = ('usuario',)
-   list_display = ('data_venda', 'carro', 'usuario', 'imprimir',)
+   list_display = ('data_venda', 'carro', 'usuario', 'agencia', 'imprimir',)
    list_per_page = 50
    search_fields = ('data_venda',)
 
@@ -290,9 +306,25 @@ class ManifestoAdmin(admin.ModelAdmin):
    def save_model(self, request, obj, form, change):
             if getattr(obj, 'usuario', None) is None:
                     obj.usuario = request.user
-            #if getattr(obj, 'agencia', None) is None:
-             #       obj.agencia = request.user.groups.first()
+            if getattr(obj, 'agencia', None) is None:
+                    obj.agencia = request.user.groups.first()
             obj.save()
+
+   def get_queryset(self, request):
+        qs = super(ManifestoAdmin, self).get_queryset(request)
+        
+        if not self.agencia == 'GERCOM':
+         return qs.filter(agencia=request.user.groups.first())	
+        else:
+         
+         return qs.filter()
+   
+   def get_queryset(self, request):
+        qs = super(ManifestoAdmin, self).get_queryset(request)
+        if not (request.user.is_superuser or request.user.groups.filter(name__iexact='GERCOM').exists()):         
+         return qs.filter(agencia=request.user.groups.first())
+        else:
+         return qs.filter()
 
 
 
