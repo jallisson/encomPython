@@ -1,4 +1,4 @@
-from fast_pagination.helpers import FastPaginator
+#from fast_pagination.helpers import FastPaginator
 from django.contrib import admin
 from .models import Carro
 from .models import Localidade
@@ -42,7 +42,7 @@ class ItemInline(admin.TabularInline):
 
 class VendaAdmin(admin.ModelAdmin):
     
-    paginator = FastPaginator
+    #paginator = FastPaginator
     list_display = ('id', 'imprimir','carro', 'data_venda', 'agencia', 'localidade_origem', 'localidade_destino', 'tipo_frete', 'responsavel_frete', 'get_clienteo', 'get_cliented', 'valor_nota', 'situacao_venda', 'usuario',)#, 'lista')
     list_filter = ('id',)
     inlines = [ItemInline]
