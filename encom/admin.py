@@ -13,7 +13,7 @@ from .models import ExcessoBagagem
 from .models import Manifesto
 from django import forms
 from django.forms.models import BaseInlineFormSet
-from fast_pagination.helpers import FastPaginator
+#from fast_pagination.helpers import FastPaginator
 
 class RequiredInlineFormSet(BaseInlineFormSet):
     """
@@ -47,7 +47,7 @@ class VendaAdmin(admin.ModelAdmin):
     inlines = [ItemInline]
     list_per_page = 50
     search_fields = ('id',)
-    paginator = FastPaginator
+   # paginator = FastPaginator
     
 
     fieldsets = [
