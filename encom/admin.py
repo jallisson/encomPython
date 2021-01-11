@@ -1,3 +1,4 @@
+from fast_pagination.helpers import FastPaginator
 from django.contrib import admin
 from .models import Carro
 from .models import Localidade
@@ -13,6 +14,7 @@ from .models import ExcessoBagagem
 from .models import Manifesto
 from django import forms
 from django.forms.models import BaseInlineFormSet
+
 
 class RequiredInlineFormSet(BaseInlineFormSet):
     """
@@ -40,13 +42,14 @@ class ItemInline(admin.TabularInline):
 
 class VendaAdmin(admin.ModelAdmin):
     
-	 
+    paginator = FastPaginator
     list_display = ('id', 'imprimir','carro', 'data_venda', 'agencia', 'localidade_origem', 'localidade_destino', 'tipo_frete', 'responsavel_frete', 'get_clienteo', 'get_cliented', 'valor_nota', 'situacao_venda', 'usuario',)#, 'lista')
     list_filter = ('id',)
     inlines = [ItemInline]
     list_per_page = 10
     search_fields = ('id',)
     
+
     fieldsets = [
             ('Dados Principais', {
                 'classes': ('suit-tab', 'suit-tab-general',),
