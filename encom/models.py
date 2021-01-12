@@ -271,7 +271,7 @@ class Item(models.Model):
 
 class Recebimento(models.Model):
     data_recebimento = models.DateField(auto_now_add=True, verbose_name=u'Data',)
-    venda = models.ForeignKey(Venda, on_delete=models.CASCADE, default=None, verbose_name=u'venda', related_name ='venda', unique=True)
+    venda = models.OneToOneField(Venda, on_delete=models.CASCADE, default=None, verbose_name=u'venda', related_name ='venda')
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
     

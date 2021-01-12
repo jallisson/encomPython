@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'fast_pagination',
+    'fast_pagination',
 ]
 
 MIDDLEWARE = [
@@ -97,6 +97,7 @@ DATABASES = {
         'PORT': '3306',
     }
 }
+
 
 
 # Password validation
@@ -156,14 +157,19 @@ TIME_INPUT_FORMATS = [ '%H:%M', ]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-
 STATIC_URL = '/static/'
+PROJECT_ROOT_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT_PATH, 'media/')
+MEDIA_URL = '/media/'
 
 DECIMAL_SEPARATOR = ','
 USE_THOUSAND_SEPARATOR = True
-
+#JET_SIDE_MENU_COMPACT = True
 JET_THEMES = [
     {
         'theme': 'default', # theme folder name

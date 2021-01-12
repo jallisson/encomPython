@@ -13,7 +13,7 @@ from .models import ExcessoBagagem
 from .models import Manifesto
 from django import forms
 from django.forms.models import BaseInlineFormSet
-#from fast_pagination.helpers import FastPaginator
+from fast_pagination.helpers import FastPaginator
 
 class RequiredInlineFormSet(BaseInlineFormSet):
     """
@@ -43,11 +43,11 @@ class VendaAdmin(admin.ModelAdmin):
     
     
     list_display = ('id', 'imprimir','carro', 'data_venda', 'agencia', 'localidade_origem', 'localidade_destino', 'tipo_frete', 'responsavel_frete', 'get_clienteo', 'get_cliented', 'valor_nota', 'situacao_venda', 'usuario',)#, 'lista')
-    list_filter = ('id',)
+    #list_filter = ('id',)
     inlines = [ItemInline]
     list_per_page = 50
     search_fields = ('id',)
-   # paginator = FastPaginator
+    paginator = FastPaginator
     
 
     fieldsets = [
@@ -64,21 +64,7 @@ class VendaAdmin(admin.ModelAdmin):
     class Meta:
              model = Venda
     
-    def get_queryset(self, request):
-        qs = super(VendaAdmin, self).get_queryset(request)
-        
-        if not self.agencia == 'GERCOM':
-         return qs.filter(agencia=request.user.groups.first())	
-        else:
-         
-         return qs.filter()
-   
-    def get_queryset(self, request):
-        qs = super(VendaAdmin, self).get_queryset(request)
-        if not (request.user.is_superuser or request.user.groups.filter(name__iexact='GERCOM').exists()):         
-         return qs.filter(agencia=request.user.groups.first())
-        else:
-         return qs.filter()
+    
 
         
 
