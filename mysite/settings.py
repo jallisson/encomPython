@@ -154,7 +154,7 @@ SHORT_DATETIME_FORMAT = 'm/d/Y P'
 FIRST_DAY_OF_WEEK = 1
 TIME_INPUT_FORMATS = [ '%H:%M', ]
 
-
+FAST_PAGINATION_TIMEOUT = 5
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
