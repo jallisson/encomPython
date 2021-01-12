@@ -63,10 +63,14 @@ class VendaAdmin(admin.ModelAdmin):
 
     class Meta:
              model = Venda
-    
-    
-
+    def get_queryset(self, request):
+        qs = super(VendaAdmin, self).get_queryset(request)
+        if not request.user.groups.filter(name__iexact='GERCOM').exists():
+         return qs.filter(agencia=request.user.groups.first())   
+        else:
         
+         return qs.filter()
+            
 
     """
     def get_queryset(self, request):
