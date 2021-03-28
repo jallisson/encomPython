@@ -118,6 +118,7 @@ class VendaAdmin(admin.ModelAdmin):
 class RelatorioForm(forms.ModelForm):
     TIPOS = (
         ('ENVIO', 'ENVIO'),
+        ('EXCESSO DE BAGAGEM', 'EXCESSO DE BAGAGEM'),
         ('RECEBIMENTO', 'RECEBIMENTO'),
         ('GERAL', 'GERAL'),
         
@@ -236,9 +237,9 @@ class MotoristaAdmin(admin.ModelAdmin):
 
 class ExcessoBagagemAdmin(admin.ModelAdmin):
 
-   list_display = ('id','empresa','hora_saida', 'data', 'carro', 'quantidade', 'cliente', 'intinerario_origem','intinerario_destino','imprimir',)
+   list_display = ('id','empresa', 'agencia', 'hora_saida', 'data_excessobagagem', 'carro', 'quantidade', 'cliente', 'intinerario_origem','intinerario_destino','imprimir',)
    list_per_page = 50
-   search_fields = ('id','carro','cliente')
+   search_fields = ('id','carro','cliente',)
    ordering = ('cliente',)
 
    class Meta:
@@ -247,15 +248,15 @@ class ExcessoBagagemAdmin(admin.ModelAdmin):
    fieldsets = [
             ('Dados Principais', {
                 'classes': ('suit-tab', 'suit-tab-general',),
-                'fields': ['empresa','hora_saida', 'data', 'carro', 'quantidade', 'cliente', 'intinerario_origem','intinerario_destino', 'item', 'valor'],
+                'fields': ['empresa','hora_saida', 'data_excessobagagem', 'carro', 'quantidade', 'cliente', 'intinerario_origem','intinerario_destino', 'item', 'valor'],
             }),]
 
 
    def save_model(self, request, obj, form, change):
             if getattr(obj, 'usuario', None) is None:
                     obj.usuario = request.user
-            #if getattr(obj, 'agencia', None) is None:
-            #        obj.agencia = request.user.groups.first()
+            if getattr(obj, 'agencia', None) is None:
+                    obj.agencia = request.user.groups.first()
             obj.save()
 
 class RecebimentoAdmin(admin.ModelAdmin):

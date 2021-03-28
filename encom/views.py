@@ -57,6 +57,7 @@ class RelatorioDetail(DetailView):
         return dict(
             super(RelatorioDetail, self).get_context_data(**kwargs),
             venda_list = Venda.objects.filter(data_venda__range=[inicio, fim]).filter(agencia=grupo),
+            excessobagagem_list = ExcessoBagagem.objects.filter(data_excessobagagem__range=[inicio, fim]).filter(agencia=grupo),
             recebimento_list = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=self.request.user),
             geral_list = Venda.objects.filter(data_venda__range=[inicio, fim]),
             #recebimento_list = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=self.request.user), filtro buscando usuario logado

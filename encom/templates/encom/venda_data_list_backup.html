@@ -138,51 +138,6 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 </p>
 {% endif %}
 
-</table>
-<ul>
-{% if object.tipo == "EXCESSO DE BAGAGEM" %}
-    <table style="width:100%">
-
-<tr>
-  {% if object.data_inicial == object.data_final %}
-Relatório do dia {{ object.data_inicial }} da Agencia: {{object.agencia}}
-{% else %}
-   Relatorio de {{ object.data_inicial }} ate {{ object.data_final }} da Agencia: {{object.agencia}}
-   {% endif %}
- <th>ID</th>   
- <th>DATA</th>
- <th>CLIENTE</th>
- <th>QUANTIDADE</th>
- <th>VALOR</th>
-  
-
-{% for excessobagagem in excessobagagem_list %}
-</tr>
-
- <tr>
-   
-   <td style= "middle;text-align: center">{{ excessobagagem.id }}</td>
-   <td style= "middle;text-align: center">{{ excessobagagem.data_excessobagagem }}</td> 
-   <td style= "middle;text-align: center">{{ excessobagagem.cliente }}</td> 
-   <td style= "middle;text-align: center">{{ excessobagagem.quantidade }}</td> 
-   <td style= "middle;text-align: center" class="valores">{{ excessobagagem.valor }}</td>
-       
-   
- </tr>
-
- {% empty %}
- Não há registros para as datas selecionadas.
- {% endfor %}   
-
-
-</table>
-
-
-    <div align="right">Total de <strong>{{ excessobagagem_list|length }}</strong> registro(s).</div>
-    <div align="right">Valor Total de R$ <strong>{{ object.get_valor_excessobagagem}}</strong></div>
-</p>
-{% endif %}
-
  {% if object.tipo == "RECEBIMENTO" %}
         <table style="width:100%">
 

@@ -151,21 +151,19 @@ Relatório do dia {{ object.data_inicial }} da Agencia: {{object.agencia}}
    {% endif %}
  <th>ID</th>   
  <th>DATA</th>
- <th>CLIENTE</th>
- <th>QUANTIDADE</th>
  <th>VALOR</th>
-  
+ 
+ 
+ 
 
 {% for excessobagagem in excessobagagem_list %}
 </tr>
 
  <tr>
    
-   <td style= "middle;text-align: center">{{ excessobagagem.id }}</td>
-   <td style= "middle;text-align: center">{{ excessobagagem.data_excessobagagem }}</td> 
-   <td style= "middle;text-align: center">{{ excessobagagem.cliente }}</td> 
-   <td style= "middle;text-align: center">{{ excessobagagem.quantidade }}</td> 
-   <td style= "middle;text-align: center" class="valores">{{ excessobagagem.valor }}</td>
+   <td>{{ excessobagagem_list.id }}</td>
+   <td>{{ excessobagagem_list.data }}</td> 
+   <td class="valores">{{ excessobagagem_list.valor }}</td>
        
    
  </tr>
@@ -179,7 +177,7 @@ Relatório do dia {{ object.data_inicial }} da Agencia: {{object.agencia}}
 
 
     <div align="right">Total de <strong>{{ excessobagagem_list|length }}</strong> registro(s).</div>
-    <div align="right">Valor Total de R$ <strong>{{ object.get_valor_excessobagagem}}</strong></div>
+    <div align="right">Valor Total de R$ <strong>{{ object.get_valor}}</strong></div>
 </p>
 {% endif %}
 

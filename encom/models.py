@@ -241,7 +241,7 @@ class Venda(models.Model):
 class ExcessoBagagem(models.Model):
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, default=None,)
     hora_saida = models.TimeField(max_length=6)
-    data = models.DateField(default=timezone.now)
+    data_excessobagagem = models.DateField(default=timezone.now, verbose_name=u'Data',)
     carro = models.ForeignKey(Carro, on_delete=models.CASCADE)
     cliente = models.CharField(max_length=200)
     quantidade = models.PositiveIntegerField(null=True, blank=False)
@@ -251,6 +251,7 @@ class ExcessoBagagem(models.Model):
     valor = models.DecimalField(verbose_name=u'Valor',
                                  max_digits=15, decimal_places=2,  default=Decimal('0.00'))
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
 
     def imprimir(self):
         return mark_safe("<a target='_blank' href='%s'>Imprimir</a>" % self.get_absolute_url())
@@ -320,8 +321,10 @@ class Manifesto(models.Model):
 
 TIPOS = (
         ('ENVIO', 'ENVIO'),
+        ('EXCESSO DE BAGAGEM', 'EXCESSO DE BAGAGEM'),
         ('RECEBIMENTO', 'RECEBIMENTO'),
         ('GERAL','GERAL')
+        
     )
 
 class Relatorio(models.Model):
@@ -369,8 +372,6 @@ class Relatorio(models.Model):
       c = b.replace('.',',')
       return c.replace('v','.')
 
-
-
     def get_valor_recebimento(self):
       inicio = self.data_inicial
       fim = self.data_final
@@ -396,10 +397,24 @@ class Relatorio(models.Model):
       valor = Venda.objects.filter(data_venda__range=[inicio, fim]).aggregate(valor=Sum(F('valor_nota'), output_field=FloatField()))
       return  valor['valor']
 
+    
     def clean(self, *args, **kwargs):
         if self.data_inicial > self.data_final:
             raise forms.ValidationError('A Data Inicial não pode ser maior que a Data Final')
 
-    
+    def get_valor_excessobagagem(self):
+      inicio = self.data_inicial
+      fim = self.data_final
+      usuario = self.usuario
+      
+      valor = ExcessoBagagem.objects.filter(data_excessobagagem__range=[inicio, fim]).filter(agencia=self.agencia).aggregate(valor=Sum(F('valor'), output_field=FloatField()))
+       #return  valor['valor']
+      a = '{:,.2f}'.format(float(valor['valor']))
+      b = a.replace(',','v')
+      c = b.replace('.',',')
+      return c.replace('v','.')
+
+
+
 #class SettingsForm(forms.Form):
 #    delivery_time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))
