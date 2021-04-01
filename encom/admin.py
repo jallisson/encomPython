@@ -239,8 +239,7 @@ class ExcessoBagagemAdmin(admin.ModelAdmin):
 
    list_display = ('id','empresa', 'agencia', 'hora_saida', 'data_excessobagagem', 'carro', 'quantidade', 'cliente', 'intinerario_origem','intinerario_destino','imprimir',)
    list_per_page = 50
-   search_fields = ('id','carro','cliente',)
-   ordering = ('cliente',)
+   search_fields = ('id','cliente',)
 
    class Meta:
              model = ExcessoBagagem
@@ -258,6 +257,22 @@ class ExcessoBagagemAdmin(admin.ModelAdmin):
             if getattr(obj, 'agencia', None) is None:
                     obj.agencia = request.user.groups.first()
             obj.save()
+
+   def get_queryset(self, request):
+        qs = super(ExcessoBagagemAdmin, self).get_queryset(request)
+        
+        if not self.agencia == 'GERCOM':
+         return qs.filter(agencia=request.user.groups.first())	
+        else:
+         
+         return qs.filter()
+   
+   def get_queryset(self, request):
+        qs = super(ExcessoBagagemAdmin, self).get_queryset(request)
+        if not (request.user.is_superuser or request.user.groups.filter(name__iexact='GERCOM').exists()):         
+         return qs.filter(agencia=request.user.groups.first())
+        else:
+         return qs.filter()
 
 class RecebimentoAdmin(admin.ModelAdmin):
    

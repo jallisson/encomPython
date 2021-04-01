@@ -96,9 +96,9 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
     <tr>
       {% if object.data_inicial == object.data_final %}
-    Relatório do dia {{ object.data_inicial }} da Agencia: {{object.agencia}}
+    Relatório de Envio do dia {{ object.data_inicial }} da Agencia: {{object.agencia}}
     {% else %}
-       Relatorio de {{ object.data_inicial }} ate {{ object.data_final }} da Agencia: {{object.agencia}}
+       Relatorio de Envio de {{ object.data_inicial }} ate {{ object.data_final }} da Agencia: {{object.agencia}}
        {% endif %}
      <th>ACAIEX</th>   
      <th>DATA</th>
@@ -145,13 +145,15 @@ tr:nth-child(even) {background-color: #f2f2f2;}
 
 <tr>
   {% if object.data_inicial == object.data_final %}
-Relatório do dia {{ object.data_inicial }} da Agencia: {{object.agencia}}
+Relatório Excesso de Bagagem do dia {{ object.data_inicial }} da Agencia: {{object.agencia}}
 {% else %}
-   Relatorio de {{ object.data_inicial }} ate {{ object.data_final }} da Agencia: {{object.agencia}}
+   Relatorio Excesso de Bagagem de {{ object.data_inicial }} ate {{ object.data_final }} da Agencia: {{object.agencia}}
    {% endif %}
  <th>ID</th>   
  <th>DATA</th>
  <th>CLIENTE</th>
+ <th>ORIGEM</th>
+ <th>DESTINO</th>
  <th>QUANTIDADE</th>
  <th>VALOR</th>
   
@@ -164,6 +166,8 @@ Relatório do dia {{ object.data_inicial }} da Agencia: {{object.agencia}}
    <td style= "middle;text-align: center">{{ excessobagagem.id }}</td>
    <td style= "middle;text-align: center">{{ excessobagagem.data_excessobagagem }}</td> 
    <td style= "middle;text-align: center">{{ excessobagagem.cliente }}</td> 
+   <td style= "middle;text-align: center">{{ excessobagagem.intinerario_origem }}</td>
+   <td style= "middle;text-align: center">{{ excessobagagem.intinerario_destino }}</td>
    <td style= "middle;text-align: center">{{ excessobagagem.quantidade }}</td> 
    <td style= "middle;text-align: center" class="valores">{{ excessobagagem.valor }}</td>
        
@@ -240,9 +244,9 @@ Relatório do dia {{ object.data_inicial }} da Agencia: {{object.agencia}}
 
     <tr>
       {% if object.data_inicial == object.data_final %}
-    Relatório do dia {{ object.data_inicial }} 
+    Relatório de Venda do dia {{ object.data_inicial }} 
     {% else %}
-       Relatorio de {{ object.data_inicial }} ate {{ object.data_final }} 
+       Relatorio de Venda de {{ object.data_inicial }} ate {{ object.data_final }} 
        {% endif %}
      <th>ACAIEX</th>   
      <th>DATA</th>

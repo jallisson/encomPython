@@ -262,6 +262,10 @@ class ExcessoBagagem(models.Model):
     #sem essa função não aparece as variaveis
     def get_excessobagagem(self):
         return ExcessoBagagem.objects.get(pk=self.pk)
+    
+    def save(self, force_insert=False, force_update=False):
+        self.cliente = self.cliente.upper()
+        super(ExcessoBagagem, self).save(force_insert, force_update)
 
     
 class Item(models.Model):
