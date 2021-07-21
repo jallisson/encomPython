@@ -129,7 +129,12 @@ CARTOES = (
         ('VISA', 'VISA')
     )
 
-#classe venda
+PRAZOS = (
+        ('30 DIAS', '30 DIAS'),
+        ('60 DIAS', '60 DIAS'),
+        ('90 SHOP', '90 DIAS')
+    )
+
 class Venda(models.Model):
     id = models.AutoField(u'AÇAIEX', primary_key=True)
     hora_saida = models.TimeField(max_length=6)
@@ -149,8 +154,10 @@ class Venda(models.Model):
     tipo_frete = models.CharField(max_length=10, choices = TIPO_FRETE, default='PAGO')
     dinheiro = models.BooleanField()
     cartao = models.BooleanField()
+    a_prazo = models.BooleanField(default=False)
     cartoes = models.CharField(max_length=30, choices = CARTOES, default='DINNER CLUBS', null=True, blank=True)
-    ano_processo = models.CharField(max_length=4, choices = CARTOES, default='VISA', null=True, blank=True)      
+    prazos = models.CharField(max_length=30, choices = PRAZOS, default='30 DIAS', null=True, blank=True)
+    #ano_processo = models.CharField(max_length=4, choices = CARTOES, default='VISA', null=True, blank=True)      
    
     #valor_nota = models.DecimalField(verbose_name=u'Valor Nota',
     #                            max_digits=15, decimal_places=2, null=True, blank=True)
@@ -158,6 +165,8 @@ class Venda(models.Model):
                                  max_digits=15, decimal_places=2,  default=Decimal('0.00'))
     valor_cartao = models.DecimalField(verbose_name=u'Valor Cartão',
                                  max_digits=15, decimal_places=2, default=Decimal('0.00'))
+    valor_prazo = models.DecimalField(verbose_name=u'Valor a Prazo',
+                                 max_digits=15, decimal_places=2, default=Decimal('0.00'))                             
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     agencia = models.ForeignKey(Group, on_delete=models.CASCADE, null=True, blank=True)
     #produto = models.ManyToManyField(Produto, blank=False, default=None)

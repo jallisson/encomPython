@@ -42,7 +42,8 @@ class ItemInline(admin.TabularInline):
 class VendaAdmin(admin.ModelAdmin):
     
     
-    list_display = ('id', 'imprimir','carro', 'data_venda', 'agencia', 'localidade_origem', 'localidade_destino', 'tipo_frete', 'responsavel_frete', 'get_clienteo', 'get_cliented', 'valor_nota', 'situacao_venda', 'usuario',)#, 'lista')
+    #list_display = ('id', 'imprimir','carro', 'data_venda', 'agencia', 'localidade_origem', 'localidade_destino', 'tipo_frete', 'responsavel_frete', 'get_clienteo', 'get_cliented', 'valor_nota', 'situacao_venda', 'usuario',)#, 'lista')
+    list_display = ('id', 'imprimir','carro', 'data_venda', 'agencia', 'localidade_origem', 'localidade_destino', 'tipo_frete', 'usuario',)#, 'lista')
     #list_filter diminui a velocidade do sistema
     #list_filter = ('id',)
     inlines = [ItemInline]
@@ -58,7 +59,7 @@ class VendaAdmin(admin.ModelAdmin):
             }),
         	('Tipo de Pagamento', {
             	'classes': ('suit-tab', 'suit-tab-general',),
-                'fields': [('dinheiro'), ('valor_dinheiro'), ('cartao'), ('valor_cartao', 'cartoes'), ('tipo_frete')]#, 'valor_nota'] #'produto']
+                'fields': [('dinheiro'), ('valor_dinheiro'), ('cartao'), ('valor_cartao', 'cartoes'),  ('a_prazo'), ('valor_prazo', 'prazos'), ('tipo_frete')]#, 'valor_nota'] #'produto']
             	#'fields': [('dinheiro', 'american_express', 'cred_shop'), ('master_card', 'visa', 'dinner_clubs'), ('valor_dinheiro', 'valor_cartao'),('tipo_frete')]#, 'valor_nota'] #'produto']
         	}),]
 

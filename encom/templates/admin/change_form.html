@@ -86,8 +86,6 @@ jQuery(document).ready(function($) {
 
 </script>
 
-
-
 <script>
 
 $(function () {
@@ -126,6 +124,28 @@ $(function () {
                 $('input[name="valor_cartao"]').fadeOut();
                 $('label[for="id_valor_cartao"]').fadeOut();
                 $('#id_cartoes').parent().fadeOut();
+            }
+        });
+    });
+
+    $(function () {
+        $('input[name="valor_prazo"]').hide();
+        $('label[for="id_valor_prazo"]').hide();
+        $('#id_prazos').parent().hide();
+
+        //show it when the checkbox is clicked
+        $('input[name="a_prazo"]').on('click', function () {
+            if ($(this).prop('checked')) {
+                //$("select#id_tipo_frete").val('A PAGAR');#combobox 
+                $('input[name="valor_prazo"]').fadeIn();
+                $('label[for="id_valor_prazo"]').fadeIn();
+                $('#id_prazos').parent().fadeIn();
+
+            } else {
+                //$("select#id_tipo_frete").val('PAGO'); 
+                $('input[name="valor_prazo"]').fadeOut();
+                $('label[for="id_valor_prazo"]').fadeOut();
+                $('#id_prazos').parent().fadeOut();
             }
         });
     });
