@@ -129,6 +129,7 @@ CARTOES = (
         ('VISA', 'VISA')
     )
 
+#classe venda
 class Venda(models.Model):
     id = models.AutoField(u'AÇAIEX', primary_key=True)
     hora_saida = models.TimeField(max_length=6)
