@@ -27,7 +27,7 @@ DEBUG = True
 
 #ALLOWED_HOSTS = ['192.168.1.254', '177.185.131.90']
 #ALLOWED_HOSTS = ['192.168.13.193']
-ALLOWED_HOSTS = ['10.0.0.16','127.0.0.1','177.185.131.90','192.168.13.143','192.168.43.90','localhost']
+ALLOWED_HOSTS = ['10.0.0.16','127.0.0.1','siscom.pythonanywhere.com','177.185.131.90','192.168.13.143','192.168.43.90','localhost']
 #ALLOWED_HOSTS = ['192.168.1.10']
 #ALLOWED_HOSTS = ['192.168.43.90']
 #ALLOWED_HOSTS = ['192.168.1.79']
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'fast_pagination',
+    'fast_pagination',
 ]
 
 MIDDLEWARE = [
@@ -88,12 +88,13 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'encomp',
-        'USER': 'encomp',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'siscom$encomp',
+        'USER': 'siscom',
         'PASSWORD': 'admtecacai',
 #        'PASSWORD': 'root',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        #'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'HOST': 'siscom.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
