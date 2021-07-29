@@ -89,12 +89,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'siscom$encomp',
-        'USER': 'siscom',
+        'NAME': 'encomp',
+        'USER': 'encomp',
+        #'NAME': 'siscom$encomp',#pythonanywhere
+        #'USER': 'siscom',#pythonanywhre
         'PASSWORD': 'admtecacai',
 #        'PASSWORD': 'root',
-        #'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'HOST': 'siscom.mysql.pythonanywhere-services.com',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        #'HOST': 'siscom.mysql.pythonanywhere-services.com',#pythonanywhere
         'PORT': '3306',
     }
 }
