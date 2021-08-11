@@ -27,7 +27,7 @@ DEBUG = True
 
 #ALLOWED_HOSTS = ['192.168.1.254', '177.185.131.90']
 #ALLOWED_HOSTS = ['192.168.13.193']
-ALLOWED_HOSTS = ['10.0.0.16','127.0.0.1','siscom.pythonanywhere.com','177.185.131.90','192.168.13.143','192.168.43.90','localhost']
+ALLOWED_HOSTS = ['10.0.0.16','127.0.0.1','buscoop.pythonanywhere.com','177.185.131.90','192.168.13.143','192.168.43.90','localhost']
 #ALLOWED_HOSTS = ['192.168.1.10']
 #ALLOWED_HOSTS = ['192.168.43.90']
 #ALLOWED_HOSTS = ['192.168.1.79']
@@ -89,14 +89,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'encomp',
-        'USER': 'encomp',
-        #'NAME': 'siscom$encomp',#pythonanywhere
-        #'USER': 'siscom',#pythonanywhre
+        #'NAME': 'encomp',
+        #'USER': 'encomp',
+        'NAME': 'buscoop$encomp',#pythonanywhere
+        'USER': 'buscoop',#pythonanywhre
         'PASSWORD': 'admtecacai',
 #        'PASSWORD': 'root',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        #'HOST': 'siscom.mysql.pythonanywhere-services.com',#pythonanywhere
+        #'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'HOST': 'buscoop.mysql.pythonanywhere-services.com',#pythonanywhere
         'PORT': '3306',
     }
 }
