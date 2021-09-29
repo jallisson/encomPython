@@ -89,14 +89,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        #'NAME': 'encomp',
-        #'USER': 'encomp',
-        'NAME': 'buscoop$encomp',#pythonanywhere
-        'USER': 'buscoop',#pythonanywhre
+        'NAME': 'encomp',
+        'USER': 'encomp',
+        #'NAME': 'buscoop$encomp',#pythonanywhere
+        #'USER': 'buscoop',#pythonanywhre
         'PASSWORD': 'admtecacai',
 #        'PASSWORD': 'root',
-        #'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'HOST': 'buscoop.mysql.pythonanywhere-services.com',#pythonanywhere
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        #'HOST': 'buscoop.mysql.pythonanywhere-services.com',#pythonanywhere
         'PORT': '3306',
     }
 }

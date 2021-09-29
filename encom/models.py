@@ -18,12 +18,18 @@ from django import forms
 class Carro(models.Model):
     nome = models.CharField(max_length=200)
 
+    class Meta:
+        unique_together = (("nome"),)
+
     def __str__(self):
         return self.nome
         
 class Localidade(models.Model):
     nome = models.CharField(max_length=200)
     uf = models.CharField(max_length=50, choices = STATE_CHOICES)
+
+    class Meta:
+        unique_together = (("nome"),)
 
     def __str__(self):
         return self.nome
@@ -35,6 +41,9 @@ class Localidade(models.Model):
 class Agencia(models.Model):
     localidade = models.ForeignKey(Localidade, on_delete=models.CASCADE)
     nome = models.CharField(max_length=200)
+
+    class Meta:
+        unique_together = (("nome"),)
 
     def __str__(self):
         return self.nome
@@ -56,6 +65,9 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nome
 
+    class Meta:
+        unique_together = (("nome"),)
+
     def save(self, force_insert=False, force_update=False):
         self.nome = self.nome.upper()
         self.endereco = self.endereco.upper()
@@ -70,6 +82,9 @@ class Empresa(models.Model):
 
     def __str__(self):
         return self.nome
+
+    class Meta:
+        unique_together = (("nome"),)
 
     def save(self, force_insert=False, force_update=False):
         self.nome = self.nome.upper()
@@ -86,6 +101,9 @@ class Produto(models.Model):
     def __str__(self):
         return '%s %s' % (self.nome,  str(self.valor))
 
+    class Meta:
+        unique_together = (("nome"),)
+
     def save(self, force_insert=False, force_update=False):
         self.nome = self.nome.upper()
         super(Produto, self).save(force_insert, force_update)
@@ -98,6 +116,9 @@ class Motorista(models.Model):
 
     def __str__(self):
         return self.nome
+    
+    class Meta:
+        unique_together = (("nome", "cpf"),)
 
     def save(self, force_insert=False, force_update=False):
         self.chapa = self.chapa.upper()
@@ -181,6 +202,9 @@ class Venda(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    class Meta:
+        unique_together = (("hora_saida","responsavel_frete","empresa","localidade_origem","localidade_destino","carro","motorista_principal","motorista_reserva","data_venda","situacao_venda","tipo_frete","dinheiro","cartao","a_prazo","cartoes","prazos","valor_dinheiro","valor_cartao","valor_prazo","usuario","agencia"),)
 
     def imprimir(self):
         return mark_safe("<a target='_blank' href='%s'>Imprimir</a>" % self.get_absolute_url())

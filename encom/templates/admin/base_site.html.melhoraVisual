@@ -1,0 +1,48 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% block extrastyle %} 
+
+<style>
+  body {
+  background-color: #fff;
+
+  } 
+  table, th, td {
+  border: 1px solid rgba(206, 200, 200, 0.733);
+}
+
+ .changelist-footer {
+  background-color: #fff;  
+  }  
+  input[type=text] {
+  border: 1px solid rgba(206, 200, 200, 0.733);
+  border-radius: 4px;
+}
+textarea {
+  border: 1px solid rgba(206, 200, 200, 0.733);
+  border-radius: 4px;
+}
+input[type=number] {
+  border: 1px solid rgba(206, 200, 200, 0.733);
+  border-radius: 4px;
+}
+.select2-container {
+    min-width: 18em !important;
+    border: 1px solid rgba(206, 200, 200, 0.733);
+    border-radius: 4px;
+}
+
+
+</style>
+
+{% endblock %}
+
+
+
+{% block nav-global %}{% endblock %}
