@@ -15,7 +15,7 @@ urlpatterns = [
     #path('', views.index, name='index'),
     #url(r'^venda/(?P<pk>\d+)/$', VendaDetail.as_view(), name='venda_detail'),
     #path(r'^venda/(?P<pk>\d+)/$', VendaDetail.as_view(), name='venda_detail'),
-    path('venda/<int:pk>', login_required(views.VendaDetail.as_view(template_name='encom/teste.html')), name='venda_detail'),
+    path('venda/<int:pk>', login_required(views.VendaDetail.as_view(template_name='encom/recibo.html')), name='venda_detail'),
 	#url(r'^lista/(?P<pk>\d+)/$', RelatorioListView.as_view(), name='venda_list'),
 	#url(r'^relatorio/(?P<pk>\d+)/$', RelatorioDetail.as_view(), name='venda_data_list'),
 	path('relatorio/<int:pk>', login_required(views.RelatorioDetail.as_view(template_name='encom/venda_data_list.html')), name='venda_data_list'),

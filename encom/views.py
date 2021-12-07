@@ -24,7 +24,8 @@ class VendaDetail(DetailView):
         pk = self.kwargs['pk']
         obj = Venda.objects.get(pk=pk)
         #return 'encom/qualquer.html'
-        return 'encom/teste.html'
+        #return 'encom/teste.html'
+        return 'encom/recibo.html'
 
 
 class ExcessoBagagemDetail(DetailView):
