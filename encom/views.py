@@ -24,8 +24,7 @@ class VendaDetail(DetailView):
         pk = self.kwargs['pk']
         obj = Venda.objects.get(pk=pk)
         #return 'encom/qualquer.html'
-        #return 'encom/teste.html'
-        return 'encom/recibo.html'
+        return 'encom/testerionorte.html'
 
 
 class ExcessoBagagemDetail(DetailView):
@@ -34,7 +33,7 @@ class ExcessoBagagemDetail(DetailView):
     def get_template_names(self):
         pk = self.kwargs['pk']
         obj = ExcessoBagagem.objects.get(pk=pk)
-        return 'encom/bagagem_data_list.html'
+        return 'encom/recibo_excesso_bagagem.html'
 
 
 
@@ -45,7 +44,7 @@ class RelatorioDetail(DetailView):
     def get_template_names(self):
         pk = self.kwargs['pk']
         obj = Relatorio.objects.get(pk=pk)
-        return 'encom/venda_data_list.html'
+        return 'encom/venda_data_list_rionorte.html'
     
     def get_context_data(self, **kwargs):
         inicio = self.object.data_inicial
@@ -72,7 +71,7 @@ class ManifestoDetail(DetailView):
     def get_template_names(self):
         pk = self.kwargs['pk']
         obj = Manifesto.objects.get(pk=pk)
-        return 'encom/manifesto_data_list.html'
+        return 'encom/manifesto_data_list_rionorte.html'
     
     def get_context_data(self, **kwargs):
         data = self.object.data_venda
