@@ -7,10 +7,11 @@ from django.utils import timezone
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.contrib.auth.models import User, Group
-from .models import Venda
+from .models import Listagem, Venda
 from .models import Recebimento
 from .models import Relatorio
 from .models import ExcessoBagagem
+from .models import Cliente
 from django.http import HttpResponse
 from .models import Manifesto
 
@@ -88,7 +89,30 @@ class ManifestoDetail(DetailView):
 
         )
 
+class listagemDetail(DetailView):
+    model = Listagem
     
+
+    def get_template_names(self):
+        pk = self.kwargs['pk']
+        obj = Listagem.objects.get(pk=pk)
+        return 'encom/listagem.html'
+    
+    def get_context_data(self, **kwargs):
+        #inicio = self.object.data_inicial
+        #fim = self.object.data_final
+        #lote = self.object.lote
+        #usuario = self.object.usuario
+        #usuario = self.object.usuario
+        #eturn self.model.filter(user=request.user)
+    	
+        return dict(
+            super(listagemDetail, self).get_context_data(**kwargs),
+            cliente_list = Cliente.objects.all().order_by('nome'),
+            #venda_list_geral = Venda.objects.filter(data_venda__range=[inicio, fim]),
+            #recebimento_list = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=self.request.user),
+            #recebimento_list = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=self.request.user), filtro buscando usuario logado
+        )
     
 
 

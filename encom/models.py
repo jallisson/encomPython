@@ -452,7 +452,23 @@ class Relatorio(models.Model):
       c = b.replace('.',',')
       return c.replace('v','.')
 
+TIPOS = (
+        ('LISTA CLIENTES', 'LISTA CLIENTES'),
+    )
 
+class Listagem(models.Model):
+    tipo = models.CharField(max_length=30, choices = TIPOS, default='LISTA CLIENTES')
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def imprimir(self):
+        return mark_safe("<a target='_blank' href='%s'>Imprimir</a>" % self.get_absolute_url())
+    imprimir.allow_tags = True
+
+    def get_absolute_url(self):
+        return reverse('listagem', args=[self.pk, ])
+
+    def __str__(self):
+        return self.tipo
 
 #class SettingsForm(forms.Form):
 #    delivery_time = forms.TimeField(widget=forms.TimeInput(format='%H:%M'))

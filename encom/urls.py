@@ -5,7 +5,7 @@ from django.views.generic.base import RedirectView
 
 
 from . import views
-from .views import VendaDetail
+from .views import VendaDetail, listagemDetail
 #from .views import RelatorioListView
 from .views import RelatorioDetail
 from .views import ExcessoBagagemDetail
@@ -23,5 +23,5 @@ urlpatterns = [
 	#url(r'^excessobagagem/(?P<pk>\d+)/$', ExcessoBagagemDetail.as_view(), name='bagagem_data_list'),
 	path('excessobagagem/<int:pk>', login_required(views.ExcessoBagagemDetail.as_view(template_name='encom/recibo_excesso_bagagem.html')), name='excessobagagem_detail'),
 	path('manifesto/<int:pk>', login_required(views.ManifestoDetail.as_view(template_name='encom/manifesto_data_list_rionorte.html')), name='manifesto_detail'),
-
+	path('listagem/<int:pk>', login_required(views.listagemDetail.as_view(template_name='encom/listagem.html')), name='listagem'),
 ]

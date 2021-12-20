@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Carro
+from .models import Carro, Listagem
 from .models import Localidade
 from .models import Cliente
 from .models import Empresa
@@ -166,9 +166,7 @@ class RelatorioAdmin(admin.ModelAdmin):
         if not (request.user.is_superuser or request.user.groups.filter(name__iexact='GERCOM').exists()):         
          return qs.filter(agencia=request.user.groups.first())
         else:
-         return qs.filter()
-
-    
+         return qs.filter()   
 
 class CarroAdmin(admin.ModelAdmin):
 
@@ -337,7 +335,38 @@ class ManifestoAdmin(admin.ModelAdmin):
         else:
          return qs.filter()
 
+class ListagemForm(forms.ModelForm):
+    TIPOS = (
+        ('LISTA CLIENTES', 'LISTA CLIENTES'),
+    )
+    
+    tipo = forms.CharField(widget=forms.RadioSelect(attrs={'class': 'inline'}, choices=TIPOS), initial='LISTA CLIENTES')
+    
+    class Meta:
+        model = Listagem
+        fields = ['tipo',]
 
+class ListagemAdmin(admin.ModelAdmin):
+
+   list_display = ('id', 'tipo', 'usuario', 'imprimir',)
+   list_per_page = 50
+   form = ListagemForm
+
+   class Meta:
+             model = Listagem
+
+   fieldsets = [
+            ('Dados Principais', {
+                'classes': ('suit-tab', 'suit-tab-general',),
+                'fields': ['tipo'],
+            }),]
+
+   def save_model(self, request, obj, form, change):
+            if getattr(obj, 'usuario', None) is None:
+                    obj.usuario = request.user
+            #if getattr(obj, 'agencia', None) is None:
+            #        obj.agencia = request.user.groups.first()
+            obj.save()
 
 #class ProdutoInline(admin.TabularInline):
 #   model = Produto
@@ -351,6 +380,7 @@ admin.site.register(Produto, ProdutoAdmin)
 admin.site.register(Motorista, MotoristaAdmin)
 admin.site.register(Venda, VendaAdmin)
 admin.site.register(Relatorio, RelatorioAdmin)
+admin.site.register(Listagem, ListagemAdmin)
 admin.site.register(Recebimento, RecebimentoAdmin)
 admin.site.register(ExcessoBagagem, ExcessoBagagemAdmin)
 admin.site.register(Manifesto, ManifestoAdmin)
