@@ -1,5 +1,8 @@
 # ENCOM [![Build Status](https://travis-ci.org/thiagopena/djangoSIGE.svg?branch=master)](https://travis-ci.org/thiagopena/djangoSIGE)
 
+Distinção e Complexidade
+O sistema tem sua complexidade pois dispoe de varios modulos solidos e estavel que funciona entre si com relacionamentos que no final torna o sistema bom para o uso em que foi designinado!
+
 ENCOM 
 
 Encom – Sistema de Controle de Pacotes é um sistema web desenvolvido para controle de pacotes que possa ser levado em ônibus de passageiro, onde uma empresa de ramo de 
@@ -56,7 +59,7 @@ python manage.py runserver
 - Login/Logout
 - Criação de perfil para cada usuário.
 - Definição de permissões para usuários.
-- Criação e geração de relátorios (financeiros com valores de cada envio separado por agencia)
+- Criação e geração de relátorios (financeiros com valores de cada envio separado por agência)
 - Interface simples e em português
 
 ## Créditos
