@@ -1,8 +1,18 @@
-# SISCOM [![Build Status](https://travis-ci.org/thiagopena/djangoSIGE.svg?branch=master)](https://travis-ci.org/thiagopena/djangoSIGE)
+# ENCOM [![Build Status](https://travis-ci.org/thiagopena/djangoSIGE.svg?branch=master)](https://travis-ci.org/thiagopena/djangoSIGE)
 
-Sistema para controle de processos
+ENCOM 
 
-Projeto independente open-source desenvolvido em Python 3 no Windows, testado no GNU/Linux e Windows.
+Encom – Sistema de Controle de Pacotes é um sistema web desenvolvido para controle de pacotes que possa ser levado em ônibus de passageiro, onde uma empresa de ramo de 
+transporte de passageiros poderá perfeitamente utilizar para a gestão e controle dos pacotes transportadas em diferentes ônibus para diferentes agências de várias 
+cidades, sendo assim a empresa que utilizar do sistema terá controle de qual cidade e agência partiu a encomenda e qual o seu destino, o encom disponibilizara de 
+relatórios financeiros demonstrando o valor de todas os pacotes envidas, recebidas, com excesso de bagagem e um relatório geral demonstrado o lucro líquido de todas 
+pacotes independente da agencia responsável pela encomenda, no sistema terá o  cadastro de grupo que é a agencia em especifico, e contara com cadastro de usuário, 
+carros, clientes, empresas, excesso de bagagem, localidade, manifesto, motorista, produtos, recebimentos relatórios e vendas, assim a empresa de ônibus terá todo 
+controle financeiro e quantitativo de pacotes envidas e recebidas entre agências e cidades! 
+
+
+![2022-04-05 (1)](https://user-images.githubusercontent.com/43224822/161877537-c78508c3-f5ab-4fdd-a23a-d554c580fdfd.png)
+
 
 
 ## Dependências
@@ -42,18 +52,11 @@ python manage.py runserver
 
 ## Implementações
 
-- Cadastro de produtos, clientes, empresas, fornecedores e transportadoras
+- Cadastro de carros, clientes, empresas, excessos de pacotes, localidades, manifestos, motoristas, produtos, recebimento, relatórios e vendas
 - Login/Logout
 - Criação de perfil para cada usuário.
 - Definição de permissões para usuários.
-- Criação e geração de PDF para orçamentos e pedidos de compra/venda
-- Módulo financeiro (Plano de Contas, Fluxo de Caixa e Lançamentos)
-- Módulo para controle de estoque
-- Módulo fiscal:
-    - Geração e armazenamento de notas fiscais
-    - Validação do XML de NF-e/NFC-es
-    - Emissão, download, consulta e cancelamento de NF-e/NFC-es **(Testar em ambiente de homologação)**
-    - Comunicação com SEFAZ (Consulta de cadastro, inutilização de notas, manifestação do destinatário)
+- Criação e geração de relátorios (financeiros com valores de cada envio separado por agencia)
 - Interface simples e em português
 
 ## Créditos
