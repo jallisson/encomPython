@@ -1,7 +1,8 @@
 # ENCOM [![Build Status](https://travis-ci.org/thiagopena/djangoSIGE.svg?branch=master)](https://travis-ci.org/thiagopena/djangoSIGE)
 
 Distinção e Complexidade
-O sistema tem sua complexidade pois dispoe de varios modulos solidos e estavel que funciona entre si com relacionamentos que no final torna o sistema bom para o uso em que foi designinado!
+
+Pense em uma empresa de transportes de passageiros que quer faturar um pouco mais com o transporte de pacotes pequenos por exemplo um smartphone, notebook ou uma simples carta entre as cidades que os passageiros serão levados, pois no bagageiro dos ônibus tem espaço suficiente para isso, mas sem um software de gestão fica complicado saber o destino do pacote e o faturamento dos pacotes transportados, além disso um pacote perdido entre as viagens pode se tornar um problema ainda maior.  O sistema tem sua complexidade pois dispoe de varios modulos solidos estavel que funciona entre si com relacionamentos que no final torna o sistema bom para o uso em que foi designinado que é a gestão dos pacotes transportado nos ônibus de passageiros.
 
 ENCOM 
 
