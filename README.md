@@ -21,7 +21,7 @@ controle financeiro e quantitativo de pacotes envidas e recebidas entre agência
 ## Dependências
 
 - [Python](https://www.python.org/downloads/) - Versão 3.5+
-- [django](http://www.djangoproject.com) == 3.1.7
+- [django](http://www.djangoproject.com) == 2.2.1
 - [apache2](https://www.apache.org/) (Opcional)
 - [mod_wsgi](https://modwsgi.readthedocs.io/en/develop/) (Opcional)
 
