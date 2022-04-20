@@ -2,17 +2,16 @@
 
 Distinção e Complexidade
 
-Pense em uma empresa de transportes de passageiros que quer faturar um pouco mais com o transporte de objetos em pacotes pequenos como por exemplo um smartphone, notebook ou uma simples carta entre as cidades que os passageiros serão levados, pois no bagageiro dos ônibus tem espaço suficiente para esse serviço, mas sem um software de gestão fica complicado saber o destino do pacote e o faturamento que a empresa teve com os pacotes transportados, além disso um pacote perdido entre as viagens pode se tornar um problema ainda maior. Sendo assim usando a tecnologia do framework DJANGO-PYTHON, o sistema ENCOM tem sua complexidade ideal para essa gestão, pois dispoe de vários modulos solidos e é um sistema estavel que funciona com vários relacionamentos de tabelas que no final o torna bom para o uso em que foi designinado que é a gestão dos pacotes transportado nos ônibus de passageiros.
+Vamos imaginar em uma empresa de transportes de passageiros que quer faturar um pouco mais com o transporte de objetos em pacotes pequenos como, por exemplo, um ‘smartphone’, notebook ou uma simples carta entre as cidades que os passageiros serão levados, pois no bagageiro dos ônibus tem espaço suficiente para esse serviço, mas sem um ‘software’ de gestão fica complicado saber o destino do pacote e o faturamento que a empresa esteve com os pacotes transportados, além disso, um pacote perdido entre as viagens pode se tornar um problema ainda maior. Sendo assim usando a tecnologia do framework DJANGO-PYTHON, o sistema ENCOM tem sua complexidade ideal para essa gestão, pois dispõe de vários módulos sólidos e é um sistema estável que funciona com vários relacionamentos de tabelas que no final o torna bom para o uso em que foi designado ser para a gerenciamento dos pacotes transportado nos ônibus de passageiros.
 
 ENCOM 
 
-Encom – Sistema de Controle de Pacotes é um sistema web desenvolvido para controle de pacotes que possa ser levado em ônibus de passageiro, onde uma empresa de ramo de 
-transporte de passageiros poderá perfeitamente utilizar para a gestão e controle dos pacotes transportadas em diferentes ônibus para diferentes agências de várias 
-cidades, sendo assim a empresa que utilizar do sistema terá controle de qual cidade e agência partiu a encomenda e qual o seu destino, o encom disponibilizara de 
-relatórios financeiros demonstrando o valor de todas os pacotes envidas, recebidas, com excesso de bagagem e um relatório geral demonstrado o lucro líquido de todas 
-pacotes independente da agencia responsável pela encomenda, no sistema terá o cadastro de grupo que é a agencia em especifico, e contara com cadastro de usuário, 
+Encom – Sistema de Controle de Pacotes é um sistema (web) desenvolvido para controle de pacotes que possa ser levado em ônibus de passageiro, onde uma empresa de ramo de transporte de passageiros poderá perfeitamente utilizar para a gestão e controle dos (pacotes) transportadas em diferentes ônibus para diferentes agências de várias 
+cidades, assim a empresa que utilizar do sistema terá controle de qual cidade e agência partiu a encomenda e qual o seu destino, o encom disponibilizara de 
+relatórios financeiros demonstrando o valor de todos os pacotes envidas, recebidas, com excesso de bagagem e um relatório geral demonstrado o lucro líquido de todas 
+pacote independente da agência responsável pela encomenda, no sistema terá o cadastro de grupo que é a agência em específico, e contara com cadastro de usuário, 
 carros, clientes, empresas, excesso de bagagem, localidade, manifesto, motorista, produtos, recebimentos relatórios e vendas, assim a empresa de ônibus terá todo 
-controle financeiro e quantitativo de pacotes envidas e recebidas entre agências e cidades! 
+controle financeiro e quantitativo de pacotes envidas e recebidas entre agências e cidades.
 
 
 ![2022-04-14 (6)](https://user-images.githubusercontent.com/43224822/163429994-fcd09daa-98d1-4960-8131-89ca512ca027.jpg)
