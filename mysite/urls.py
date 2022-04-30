@@ -24,6 +24,6 @@ urlpatterns = [
    # path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
 ]
 
-admin.site.site_header = 'Siscom'
-admin.site.index_title = 'Siscom - Sistema de Encomendas'
-admin.site.site_title = 'Siscom - Sistema de Encomendas'
+admin.site.site_header = 'Encom'
+admin.site.index_title = 'Encom - Sistema de Encomendas'
+admin.site.site_title = 'Encom - Sistema de Encomendas'
