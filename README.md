@@ -1,78 +1,70 @@
 # ENCOM [![Build Status](https://travis-ci.org/thiagopena/djangoSIGE.svg?branch=master)](https://travis-ci.org/thiagopena/djangoSIGE)
 
-Distinção e Complexidade
+Distinction and Complexity
 
-Vamos imaginar em uma empresa de transportes de passageiros que quer faturar um pouco mais com o transporte de objetos em pacotes pequenos como, por exemplo, um ‘smartphone’, notebook ou uma simples carta entre as cidades que os passageiros serão levados, pois no bagageiro dos ônibus tem espaço suficiente para esse serviço, mas sem um ‘software’ de gestão fica complicado saber o destino do pacote e o faturamento que a empresa esteve com os pacotes transportados, além disso, um pacote perdido entre as viagens pode se tornar um problema ainda maior. Sendo assim usando a tecnologia do framework DJANGO-PYTHON, o sistema ENCOM tem sua complexidade ideal para essa gestão, pois dispõe de vários módulos sólidos e é um sistema estável que funciona com vários relacionamentos de tabelas que no final o torna bom para o uso em que foi designado ser para a gerenciamento dos pacotes transportado nos ônibus de passageiros.
+Let's imagine a passenger transport company that wants to earn a little more with the transport of objects in small packages such as, for example, a 'smartphone', notebook or a simple letter between the cities that passengers will be taken, because in the luggage compartment of the buses has enough space for this service, but without management software it is difficult to know the destination of the package and the company's billing with the packages transported, in addition, a package lost between trips can become a problem even bigger. Therefore, using the technology of the DJANGO-PYTHON framework, the ENCOM system has its ideal complexity for this management, as it has several solid modules and is a stable system that works with several table relationships, which in the end makes it good for use in which was designed to be for the management of packages carried on passenger buses.
 
 ENCOM 
 
-Encom – Sistema de Controle de Pacotes é um sistema (web) desenvolvido para controle de pacotes que possa ser levado em ônibus de passageiro, onde uma empresa de ramo de transporte de passageiros poderá perfeitamente utilizar para a gestão e controle dos (pacotes) transportadas em diferentes ônibus para diferentes agências de várias 
-cidades, assim a empresa que utilizar do sistema terá controle de qual cidade e agência partiu a encomenda e qual o seu destino, o encom disponibilizara de 
-relatórios financeiros demonstrando o valor de todos os pacotes envidas, recebidas, com excesso de bagagem e um relatório geral demonstrado o lucro líquido de todas 
-pacote independente da agência responsável pela encomenda, no sistema terá o cadastro de grupo que é a agência em específico, e contara com cadastro de usuário, 
-carros, clientes, empresas, excesso de bagagem, localidade, manifesto, motorista, produtos, recebimentos relatórios e vendas, assim a empresa de ônibus terá todo 
-controle financeiro e quantitativo de pacotes envidas e recebidas entre agências e cidades.
-
+Encom – Package Control System is a system (web) developed to control packages that can be taken on passenger buses, where a passenger transport company can perfectly use for the management and control of (packages) transported in different buses to different agencies of different
+cities, so the company that uses the system will have control of which city and agency the order left and what its destination, the order will make available
+financial reports showing the value of all packages sent, received, with excess baggage and a general report showing the net income of all
+package independent of the agency responsible for the order, the system will have the group registration that is the specific agency, and will have a user registration,
+cars, customers, companies, excess baggage, location, manifest, driver, products, receipts, reports and sales, so the bus company will have all
+financial and quantitative control of packages sent and received between agencies and cities.
 
 ![2022-04-14 (6)](https://user-images.githubusercontent.com/43224822/163429994-fcd09daa-98d1-4960-8131-89ca512ca027.jpg)
 
-![image](https://user-images.githubusercontent.com/43224822/173084616-4ed13116-47b2-4ed3-8a4c-9c1d0d026912.png)
 
-![image](https://user-images.githubusercontent.com/43224822/173084674-3bbc5598-11b4-4e71-a5e9-9f3f570f0cad.png)
-
-![image](https://user-images.githubusercontent.com/43224822/173084717-93beb5e0-6bda-4938-a3db-7170b6dab09b.png)
-
-
-
-## Dependências
+## Dependencies
 
 - [Python](https://www.python.org/downloads/) - Versão 3.5+
 - [django](http://www.djangoproject.com) == 2.2.1
 - [apache2](https://www.apache.org/) (Opcional)
 - [mod_wsgi](https://modwsgi.readthedocs.io/en/develop/) (Opcional)
 
-## Instalação:
+## Installation:
 
-0. Instalar as bibliotecas/pacotes (no Linux):
+0. Install the libraries/packages (on Linux):
 
-1. Instalar dependências:
+1. Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Sincronize a base de dados:
+2. Synchronize the database:
 
 ```bash
 python manage.py migrate
 ```
 
-5. Crie um usuário (Administrador do sistema):
+3. Create a user (System Administrator):
 
 ```bash
 python manage.py createsuperuser
 ```
 
-6. Teste a instalação carregando o servidor de desenvolvimento (http://localhost:8000 no navegador):
+4. Test the installation by loading the development server (http://localhost:8000 in the browser):
 
 ```bash
 python manage.py runserver
 ```
 
-## Implementações
+## Implementations
 
-- Cadastro de carros, clientes, empresas, excessos de pacotes, localidades, manifestos, motoristas, produtos, recebimento, relatórios e vendas
+- Registration of cars, customers, companies, excess packages, locations, manifests, drivers, products, receipt, reports and sales
 - Login/Logout
-- Criação de perfil para cada usuário.
-- Definição de permissões para usuários.
-- Criação e geração de relátorios (financeiros com valores de cada envio separado por agência)
-- Interface simples e em português
+- Profile creation for each user.
+- Definition of permissions for users.
+- Creation and generation of reports (financial with values of each shipment separated by agency)
+- Simple interface and in Portuguese
 
-## Créditos
+## credits
 
 - [jallisson](https://github.com/jallisson)
 
 
-## Ajuda
+## Help
 
-Como este é um projeto em desenvolvimento, qualquer feedback será bem-vindo.
+As this is an ongoing project, any feedback is welcome.
