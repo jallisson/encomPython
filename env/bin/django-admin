@@ -1,4 +1,6 @@
-#!/var/www/encom/env/bin/python
+#!/bin/sh
+'''exec' "/mnt/c/Users/jalli/OneDrive/Área de Trabalho/SISTEMAS JJ/sistema python/acai/encomPython/env/bin/python" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

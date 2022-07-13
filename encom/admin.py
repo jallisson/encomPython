@@ -58,7 +58,7 @@ class VendaAdmin(admin.ModelAdmin):
             }),
         	('Tipo de Pagamento', {
             	'classes': ('suit-tab', 'suit-tab-general',),
-                'fields': [('dinheiro'), ('valor_dinheiro'), ('cartao'), ('valor_cartao', 'cartoes'), ('tipo_frete')]#, 'valor_nota'] #'produto']
+                'fields': [('dinheiro'), ('valor_dinheiro'), ('conta_corrente'), ('valor_conta_corrente'), ('cartao'), ('valor_cartao', 'cartoes'), ('tipo_frete')]#, 'valor_nota'] #'produto']
             	#'fields': [('dinheiro', 'american_express', 'cred_shop'), ('master_card', 'visa', 'dinner_clubs'), ('valor_dinheiro', 'valor_cartao'),('tipo_frete')]#, 'valor_nota'] #'produto']
         	}),]
 
@@ -112,7 +112,8 @@ class VendaAdmin(admin.ModelAdmin):
     	user_group = request.user.groups.values_list('name', flat=True)
     	rfo = super(VendaAdmin, self).get_readonly_fields(request, obj)
     	if not request.user.groups.filter(name__iexact='GERCOM').exists():
-    	 rfo += ('situacao_venda',)
+    	 rfo += ('situacao_venda','conta_corrente')
+
     	return rfo
 
 class RelatorioForm(forms.ModelForm):

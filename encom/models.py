@@ -147,6 +147,7 @@ class Venda(models.Model):
     #aba de valores teste
     tipo_frete = models.CharField(max_length=10, choices = TIPO_FRETE, default='PAGO')
     dinheiro = models.BooleanField()
+    conta_corrente = models.BooleanField(default=False)
     cartao = models.BooleanField()
     cartoes = models.CharField(max_length=30, choices = CARTOES, default='DINNER CLUBS', null=True, blank=True)
     ano_processo = models.CharField(max_length=4, choices = CARTOES, default='VISA', null=True, blank=True)      
@@ -155,6 +156,8 @@ class Venda(models.Model):
     #                            max_digits=15, decimal_places=2, null=True, blank=True)
     valor_dinheiro = models.DecimalField(verbose_name=u'Valor Dinheiro',
                                  max_digits=15, decimal_places=2,  default=Decimal('0.00'))
+    valor_conta_corrente = models.DecimalField(verbose_name=u'Valor Conta Corrente',
+                                 max_digits=15, decimal_places=2,  default=Decimal('0.00'))                             
     valor_cartao = models.DecimalField(verbose_name=u'Valor Cartão',
                                  max_digits=15, decimal_places=2, default=Decimal('0.00'))
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -201,7 +204,7 @@ class Venda(models.Model):
 
         
     def valor_nota(self, force_insert=False, force_update=False):
-        valor_nota = self.valor_dinheiro + self.valor_cartao 
+        valor_nota = self.valor_dinheiro + self.valor_cartao + self.valor_conta_corrente
         return valor_nota
     
     def desconto(self):
@@ -349,7 +352,7 @@ class Relatorio(models.Model):
         return str(self.data_inicial)
 
     def valor_nota(self, force_insert=False, force_update=False):
-        return Venda.objects.get(valor_dinheiro=self.valor_dinheiro) + self.valor_cartao 
+        return Venda.objects.get(valor_dinheiro=self.valor_dinheiro) + self.valor_cartao + self.valor_conta_corrente
             
 
     def get_valor(self):
@@ -357,7 +360,7 @@ class Relatorio(models.Model):
       fim = self.data_final
       agencia = self.agencia
       
-      valor = Venda.objects.filter(data_venda__range=[inicio, fim]).filter(agencia=agencia).aggregate(valor=Sum(F('valor_dinheiro') + F('valor_cartao'), output_field=FloatField()))
+      valor = Venda.objects.filter(data_venda__range=[inicio, fim]).filter(agencia=agencia).aggregate(valor=Sum(F('valor_dinheiro') + F('valor_cartao') + F('valor_conta_corrente'), output_field=FloatField()))
       #return  valor['valor']
       a = '{:,.2f}'.format(float(valor['valor']))
       b = a.replace(',','v')
@@ -369,7 +372,7 @@ class Relatorio(models.Model):
       fim = self.data_final
       agencia = self.agencia
       
-      valor = Venda.objects.filter(data_venda__range=[inicio, fim]).aggregate(valor=Sum(F('valor_dinheiro') + F('valor_cartao'), output_field=FloatField()))
+      valor = Venda.objects.filter(data_venda__range=[inicio, fim]).aggregate(valor=Sum(F('valor_dinheiro') + F('valor_cartao') + F('valor_conta_corrente'), output_field=FloatField()))
       #return  valor['valor']
       a = '{:,.2f}'.format(float(valor['valor']))
       b = a.replace(',','v')
@@ -381,7 +384,7 @@ class Relatorio(models.Model):
       fim = self.data_final
       usuario = self.usuario
       
-      valor = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=usuario).aggregate(valor=Sum(F('venda__valor_dinheiro') + F('venda__valor_cartao'), output_field=FloatField()))
+      valor = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=usuario).aggregate(valor=Sum(F('venda__valor_dinheiro') + F('venda__valor_cartao') + F('valor_conta_corrente'), output_field=FloatField()))
       return  valor['valor']
 
     def get_valor_comissao(self):
@@ -389,7 +392,7 @@ class Relatorio(models.Model):
       fim = self.data_final
       usuario = self.usuario
       
-      valor = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=usuario).aggregate(valor=Sum(F('venda__valor_dinheiro') + F('venda__valor_cartao'), output_field=FloatField()))
+      valor = Recebimento.objects.filter(data_recebimento__range=[inicio, fim]).filter(usuario=usuario).aggregate(valor=Sum(F('venda__valor_dinheiro') + F('venda__valor_cartao') + F('valor_conta_corrente'), output_field=FloatField()))
       #return float(valor.replace(",",".")) * 3 / 100
       #Decimal(valortotal['valortotal']) - valor_nota()
       return  valor['valor'] * 3 / 100

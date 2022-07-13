@@ -133,6 +133,28 @@ $(function () {
 
 </script>
 
+ <script>
+
+    $(function () {
+            $('input[name="valor_conta_corrente"]').hide();
+            $('label[for="id_valor_conta_corrente"]').hide();
+    
+            //show it when the checkbox is clicked
+            $('input[name="conta_corrente"]').on('click', function () {
+                if ($(this).prop('checked')) {
+                    $('input[name="valor_conta_corrente"]').fadeIn();
+                    $('label[for="id_valor_conta_corrente"]').fadeIn();
+                } else {
+                    $('input[name="valor_conta_corrente"]').fadeOut();
+                    $('label[for="id_valor_conta_corrente"]').fadeOut();
+                }
+            });
+        });
+    
+    </script>
+
+
+
 <script>
 jQuery(document).ready(function($) {
     $('input[type="radio"]').change(function(){

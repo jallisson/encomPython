@@ -88,10 +88,6 @@ class ManifestoDetail(DetailView):
 
         )
 
-    
-    
-
-
 #class RelatorioListView(ListView):
 
 #    model = Venda
