@@ -39,7 +39,7 @@ ALLOWED_HOSTS = ['10.0.0.16','127.0.0.1','buscoop.pythonanywhere.com','177.185.1
 INSTALLED_APPS = [
     #'suit',
     #'jet.dashboard',
-    'jet',
+    #'jet',  # Comentado temporariamente - pacote não instalado
     #'suit',
     #'encom.apps.SuitConfig',
     'encom.apps.EncomConfig',
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fast_pagination',
+    #'fast_pagination',  # Comentado temporariamente - pacote não instalado
 ]
 
 MIDDLEWARE = [
@@ -88,18 +88,26 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'encomp',#local
-        'USER': 'encomp',#local
-        #'NAME': 'buscoop$encomp',#pythonanywhere
-        #'USER': 'buscoop',#pythonanywhre
-        'PASSWORD': 'admtecacai', #universal
-#        'PASSWORD': 'root',
-        'HOST': 'localhost',#local
-        #'HOST': 'buscoop.mysql.pythonanywhere-services.com',#pythonanywhere
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+# Configuração MySQL original (comentada temporariamente)
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'encomp',#local
+#         'USER': 'encomp',#local
+#         #'NAME': 'buscoop$encomp',#pythonanywhere
+#         #'USER': 'buscoop',#pythonanywhre
+#         'PASSWORD': 'admtecacai', #universal
+# #        'PASSWORD': 'root',
+#         'HOST': 'localhost',#local
+#         #'HOST': 'buscoop.mysql.pythonanywhere-services.com',#pythonanywhere
+#         'PORT': '3306',
+#     }
+# }
 
 
 
@@ -157,7 +165,7 @@ SHORT_DATETIME_FORMAT = 'm/d/Y P'
 FIRST_DAY_OF_WEEK = 1
 TIME_INPUT_FORMATS = [ '%H:%M', ]
 
-FAST_PAGINATION_TIMEOUT = 5
+# FAST_PAGINATION_TIMEOUT = 5  # Comentado - fast_pagination não instalado
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'

@@ -20,7 +20,7 @@ from django.urls import include, path
 urlpatterns = [
     path('encom/', include('encom.urls')),
     path('', admin.site.urls),
-    path('jet/', include('jet.urls', 'jet')),  # Django JET URLS
+    # path('jet/', include('jet.urls', 'jet')),  # Django JET URLS - Comentado (pacote não instalado)
    # path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
 ]
 
